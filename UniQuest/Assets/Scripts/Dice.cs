@@ -13,11 +13,12 @@ public class Dice : MonoBehaviour {
         rend = GetComponent<SpriteRenderer>();
         diceSides = Resources.LoadAll<Sprite>("DiceSides/");
         rend.sprite = diceSides[5];
+        
 	}
 
     private void OnMouseDown()
     {
-        //Debug.Log("clicked rollbutton");
+        
         //if (!GameControl.gameOver && coroutineAllowed)
         if (coroutineAllowed)
             StartCoroutine("RollTheDice");
@@ -32,8 +33,8 @@ public class Dice : MonoBehaviour {
         for (int i = 0; i <= 20; i++)
         {
             randomDiceSide = Random.Range(0, 6);
-            // rend.sprite = diceSides[randomDiceSide];
-            yield return new WaitForSeconds(0.05f);
+            rend.sprite = diceSides[randomDiceSide];
+            yield return new WaitForSeconds(0.12f);
         }
 
         GameControl.diceSideThrown = randomDiceSide + 1;

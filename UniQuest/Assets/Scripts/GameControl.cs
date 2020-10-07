@@ -103,55 +103,41 @@ public class GameControl : MonoBehaviour {
         // Debug.Log(player1.GetComponent<FollowThePath>().waypointIndex);
         // Debug.Log(player1StartWaypoint);
         // Debug.Log(diceSideThrown);
-        // switch(player1.GetComponent<FollowThePath>().waypointIndex){
-        //     case 5:
-        //         // rollagain();
-        //         break;
-        //     case 8:
-        //         // portal();
-        //         break;
-        //     case 14:
-        //         // rollagain();
-        //         break;
-        //     case 18:
-        //         // rollagain();
-        //         break;
-        //     case 24:
-        //         // rollagain();
-        //         break; 
-        //     case 26:
-        //         // portal();
-        //         break;
-        // }
+        
 
-        // switch(player2.GetComponent<FollowThePath>().waypointIndex){
-        //     case 5:
-        //         // rollagain();
-        //         break;
-        //     case 8:
-        //         // portal();
-        //         break;
-        //     case 14:
-        //         // rollagain();
-        //         break;
-        //     case 18:
-        //         // rollagain();
-        //         break;
-        //     case 24:
-        //         // rollagain();
-        //         break; 
-        //     case 26:
-        //         // portal();
-        //         break;
-        // }
+        
 
         if (player1.GetComponent<FollowThePath>().waypointIndex > player1StartWaypoint + diceSideThrown)
         {
-            player1.GetComponent<FollowThePath>().moveAllowed = false;
+            Debug.Log(player1.GetComponent<FollowThePath>().waypointIndex -1);
+            switch(player1.GetComponent<FollowThePath>().waypointIndex -1){
+            case 5:
+                rollagain(1);
+                break;
+            case 8:
+                portal(1, 13);
+                break;
+            case 14:
+                rollagain(1);
+                break;
+            case 18:
+                rollagain(1);
+                break;
+            case 24:
+                rollagain(1);
+                break; 
+            case 26:
+                portal(1, 30);
+                break;
+            default:
+                player1.GetComponent<FollowThePath>().moveAllowed = false;
+                Debug.Log("Test");
+                player1StartWaypoint = player1.GetComponent<FollowThePath>().waypointIndex - 1;
+                break;
+        }
            // player1MoveText.gameObject.SetActive(false);
             //player2MoveText.gameObject.SetActive(true);
-            Debug.Log("Test");
-            player1StartWaypoint = player1.GetComponent<FollowThePath>().waypointIndex - 1;
+            
         }
        
 
@@ -159,11 +145,36 @@ public class GameControl : MonoBehaviour {
       
         if (player2.GetComponent<FollowThePath>().waypointIndex > player2StartWaypoint + diceSideThrown)
         {
-            player2.GetComponent<FollowThePath>().moveAllowed = false;
+            Debug.Log(player1.GetComponent<FollowThePath>().waypointIndex -1);
+            switch(player2.GetComponent<FollowThePath>().waypointIndex -1){
+            case 5:
+                rollagain(2);
+                break;
+            case 8:
+                portal(2, 13);
+                break;
+            case 14:
+                rollagain(2);
+                break;
+            case 18:
+                rollagain(2);
+                break;
+            case 24:
+                rollagain(1);
+                break; 
+            case 26:
+                portal(2, 30);
+                break;
+            default:
+                player2.GetComponent<FollowThePath>().moveAllowed = false;
+                
+                player2StartWaypoint = player2.GetComponent<FollowThePath>().waypointIndex - 1;
+                break;
+        }
+        
           //  player2MoveText.gameObject.SetActive(false);
           //  player1MoveText.gameObject.SetActive(true);
-          Debug.Log("player1move");
-            player2StartWaypoint = player2.GetComponent<FollowThePath>().waypointIndex - 1;
+          
         }
        
 
@@ -325,23 +336,35 @@ public class GameControl : MonoBehaviour {
 
 
 
-    // public static void rollagain(){
-    //     if(player1MoveText.activeSelf == true){
-    //         Debug.Log("Player 2 Rolls Again");
-    //     }
-    //     else if(player2MoveText.activeSelf == true){
-    //         Debug.Log("Player 2 Rolls Again");
-    //     }
-    //     else{
-    //         Debug.Log("Dunno who Rolls again");
-    //     }
-        
-    // }
+    public static void rollagain(int playerToMove){
+        switch (playerToMove) { 
+            case 1:
+                Debug.Log("Apparently Player 1 Should roll again.");
+                break;
+
+            case 2:
+                Debug.Log("Apparently Player 2 Should roll again.");
+                break;
+            default:
+                Debug.Log("Someone gets to roll again, But I have no clue who... ");
+                break;
+        }
+    }
 
 
-    // public static void portal(){
-    //     Debug.Log("We've entered a portal. Wow.");
-    // }
+    public static void portal(int playerToMove, int destination){
+      switch (playerToMove){
+        case 1:
+          Debug.Log("Player 1 entered a portal. their destination is: " + destination);
+          break;
+        case 2:
+          Debug.Log("Player 1 entered a portal. their destination is: " + destination);
+          break;
+        default:          
+          Debug.Log("We've entered a portal. Wow. Dunno who or where though");
+          break;
+      }
+    }
 
 
 
