@@ -1,24 +1,38 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Dice : MonoBehaviour {
 
-    private Sprite[] diceSides;
-    private SpriteRenderer rend;
+    private Sprite ds1, ds2, ds3, ds4, ds5, ds6;
+    public List<Sprite> DiceSides = new List<Sprite>();
     private int whosTurn = 1;
     private bool coroutineAllowed = true;
 
-	// Use this for initialization
-	private void Start () {
-        rend = GetComponent<SpriteRenderer>();
-        diceSides = Resources.LoadAll<Sprite>("DiceSides/");
-        rend.sprite = diceSides[5];
-        
-	}
+    public GameObject canvas;
 
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
+        ds1 = Resources.Load<Sprite>("DiceSides/s1");
+        ds2 = Resources.Load<Sprite>("DiceSides/s2");
+        ds3 = Resources.Load<Sprite>("DiceSides/s3");
+        ds4 = Resources.Load<Sprite>("DiceSides/s4");
+        ds5 = Resources.Load<Sprite>("DiceSides/s5");
+        ds6 = Resources.Load<Sprite>("DiceSides/s6");
+        DiceSides.Add(ds1);
+        DiceSides.Add(ds2);
+        DiceSides.Add(ds3);
+        DiceSides.Add(ds4);
+        DiceSides.Add(ds5);
+        DiceSides.Add(ds6);
         
+        canvas = GameObject.Find("Canvas");
+
+
+        Debug.Log("D MouseDown");
+        Debug.Log(DiceSides);
         //if (!GameControl.gameOver && coroutineAllowed)
         if (coroutineAllowed)
             StartCoroutine("RollTheDice");
@@ -27,13 +41,14 @@ public class Dice : MonoBehaviour {
 
     private IEnumerator RollTheDice()
     {
-        
+        Debug.Log("D RollTheDice");
         coroutineAllowed = false;
         int randomDiceSide = 0;
         for (int i = 0; i <= 20; i++)
         {
             randomDiceSide = Random.Range(0, 6);
-            rend.sprite = diceSides[randomDiceSide];
+            canvas.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = DiceSides[randomDiceSide];
+            
             yield return new WaitForSeconds(0.12f);
         }
 

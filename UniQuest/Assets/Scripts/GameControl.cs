@@ -9,6 +9,8 @@ public class GameControl : MonoBehaviour {
 
     //private static GameObject whoWinsTextShadow, player1MoveText, player2MoveText;
     private static GameObject player1, player2;
+    private static GameObject Mcamera;
+   
     //private static GameObject MainOverlay, QuestionOverlay, QuestionOverlay2, Wrong, Right;
     //private static GameObject qPrompt, qPrompt2;
     //public static GameObject qTrue, qFalse;
@@ -19,6 +21,7 @@ public class GameControl : MonoBehaviour {
     public static int player2StartWaypoint = 0;
 
     public static bool gameOver = false;
+    public int NumberofPlayers;
 
     // public static string DiceColour;
 
@@ -26,14 +29,26 @@ public class GameControl : MonoBehaviour {
     //public static List<string> answerlist = new List<string>();
 
     // Use this for initialization
+
     void Start () {
-        Debug.Log("OnStart");
+        NumberofPlayers = MainMenu.NumPlayers;
+        Debug.Log("OnStart, " + NumberofPlayers +" players");
         //whoWinsTextShadow = GameObject.Find("WhoWinsText");
         //player1MoveText = GameObject.Find("Player1MoveText");
         //player2MoveText = GameObject.Find("Player2MoveText");
+        Mcamera = GameObject.Find("MainCamera");
 
+
+        Mcamera.SetActive(false);
+        Mcamera.GetComponent<AudioListener>().enabled = false;
         player1 = GameObject.Find("Player1");
         player2 = GameObject.Find("Player2");
+        player1.SetActive(true);
+        player2.SetActive(true);
+        enablePlayerCamera(player1);
+        disablePlayerCamera(player2);
+        
+        
         //MainOverlay = GameObject.Find("Canvas");
         //Wrong = GameObject.Find("wrong");
         //Right = GameObject.Find("right");
@@ -71,45 +86,17 @@ public class GameControl : MonoBehaviour {
 
     }
 
-
-
-    //public void ReadTextFile(){
-
-        //try{
-           // using (StreamReader streamreader = new StreamReader("Assets/QuestionList2.txt"))
-           // {
-            //    string currentline;
-            //    while ((currentline = streamreader.ReadLine()) != null)
-            //    {
-           //         string question = currentline.Remove(currentline.IndexOf("@"));
-           //         questionlist.Add(question);
-            //        string answer = currentline.Substring(currentline.LastIndexOf("@") + 1);;
-           //         answerlist.Add(answer);
-            //    }
-         //   }
-      //  }
-       // catch(Exception e)
-      //  {
-      //      Console.WriteLine("File could not be read");
-      //      Console.WriteLine(e.Message);
-     //   }
-
-  //  }
    
 
     // Update is called once per frame
     void Update()
     {
-        // Debug.Log(player1.GetComponent<FollowThePath>().waypointIndex);
-        // Debug.Log(player1StartWaypoint);
-        // Debug.Log(diceSideThrown);
-        
-
-        
+            
 
         if (player1.GetComponent<FollowThePath>().waypointIndex > player1StartWaypoint + diceSideThrown)
         {
             Debug.Log(player1.GetComponent<FollowThePath>().waypointIndex -1);
+            
             switch(player1.GetComponent<FollowThePath>().waypointIndex -1){
             case 5:
                 rollagain(1);
@@ -133,10 +120,13 @@ public class GameControl : MonoBehaviour {
                 player1.GetComponent<FollowThePath>().moveAllowed = false;
                 Debug.Log("Test");
                 player1StartWaypoint = player1.GetComponent<FollowThePath>().waypointIndex - 1;
+                enablePlayerCamera(player2);
+                disablePlayerCamera(player1);
                 break;
         }
            // player1MoveText.gameObject.SetActive(false);
             //player2MoveText.gameObject.SetActive(true);
+            
             
         }
        
@@ -146,6 +136,7 @@ public class GameControl : MonoBehaviour {
         if (player2.GetComponent<FollowThePath>().waypointIndex > player2StartWaypoint + diceSideThrown)
         {
             Debug.Log(player1.GetComponent<FollowThePath>().waypointIndex -1);
+            
             switch(player2.GetComponent<FollowThePath>().waypointIndex -1){
             case 5:
                 rollagain(2);
@@ -169,13 +160,12 @@ public class GameControl : MonoBehaviour {
                 player2.GetComponent<FollowThePath>().moveAllowed = false;
                 
                 player2StartWaypoint = player2.GetComponent<FollowThePath>().waypointIndex - 1;
+                enablePlayerCamera(player1);
+                disablePlayerCamera(player2);
                 break;
-        }
+        }      
         
-          //  player2MoveText.gameObject.SetActive(false);
-          //  player1MoveText.gameObject.SetActive(true);
-          
-        }
+     }
        
 
 //if p1's position is the last in the waypoint array, p1 wins
@@ -195,103 +185,23 @@ public class GameControl : MonoBehaviour {
        
     }
 
-    //public static void AskQuestion(int playerToAsk)
-   // {
-    //    switch (playerToAsk) {
-    //        case 1:
-    //            MainOverlay.SetActive(false);
-    //            QuestionOverlay.SetActive(true);
-      //          QuestionOverlay2.SetActive(false);
 
-        //        int questiontoask = UnityEngine.Random.Range(0, questionlist.Count);
-          //      qPrompt.GetComponent<Text>().text = questionlist[questiontoask];
-            //    Debug.Log(answerlist[questiontoask]);
-              //  qTrue.onClick.AddListener(delegate{Truepressed1(questiontoask);});
-                //qFalse.onClick.AddListener(delegate{Falsepressed1(questiontoask);});
+    public static void disablePlayerCamera(GameObject player){
+        player.transform.GetChild(0).gameObject.SetActive(false);
+        player.transform.GetChild(0).gameObject.GetComponent<AudioListener>().enabled = false;
+    }
 
-                //break;
-            //case 2:
-              //  MainOverlay.SetActive(false);
-                //QuestionOverlay.SetActive(false);
-                //QuestionOverlay2.SetActive(true);
+    public static void enablePlayerCamera(GameObject player){
+        player.transform.GetChild(0).gameObject.SetActive(true);
+        player.transform.GetChild(0).gameObject.GetComponent<AudioListener>().enabled = false;
+    }
 
-                //int questiontoask2 = UnityEngine.Random.Range(0, questionlist.Count);
-                //qPrompt2.GetComponent<Text>().text = questionlist[questiontoask2];
-                //Debug.Log(answerlist[questiontoask2]);
-                //qTrue2.onClick.AddListener(delegate{Truepressed2(questiontoask2);});
-                //qFalse2.onClick.AddListener(delegate{Falsepressed2(questiontoask2);});
-                //break;
-
-        //}
-    //}
-    // public static void Truepressed1(int questiontoask){
-    //    if(answerlist[questiontoask] == "true"){
-    //        Right.SetActive(true);
-    //         MovePlayer(1);
-    //         MainOverlay.SetActive(true);
-    //         QuestionOverlay.SetActive(false);
-    //         QuestionOverlay2.SetActive(false);
-    //         Right.SetActive(false);
-            
-
-    //    }
-    //    else if(answerlist[questiontoask] == "false"){
-    //         Wrong.SetActive(true);
-    //         Debug.Log("the answer was meant to be false." + questiontoask);
-    //         MainOverlay.SetActive(true);
-    //         QuestionOverlay.SetActive(false);
-    //         QuestionOverlay2.SetActive(false);
-    //         Wrong.SetActive(false);
-            
-            
-    //    }
-    // }
-
-
-    // public static void Truepressed2(int questiontoask2){
-    //    if(answerlist[questiontoask2] != "false"){
-            
-    //         MainOverlay.SetActive(true);
-    //         QuestionOverlay.SetActive(false);
-    //         QuestionOverlay2.SetActive(false);
-    //         MovePlayer(2);
-    //    }
-    //    else if(answerlist[questiontoask2] == "false"){
-    //         Debug.Log("the answer was meant to be false." + questiontoask2);
-    //         MainOverlay.SetActive(true);
-    //         QuestionOverlay.SetActive(false);
-    //         QuestionOverlay2.SetActive(false);
-    //    }
-    // }
-
-    // public static void Falsepressed1(int questiontoask){
-    //    if(answerlist[questiontoask] == "false"){
-    //         MovePlayer(1);
-    //         MainOverlay.SetActive(true);
-    //         QuestionOverlay.SetActive(false);
-    //         QuestionOverlay2.SetActive(false);
-    //    }
-    //    else if(answerlist[questiontoask] == "true"){
-    //         Debug.Log("the answer was meant to be false." + questiontoask);
-    //         MainOverlay.SetActive(true);
-    //         QuestionOverlay.SetActive(false);
-    //         QuestionOverlay2.SetActive(false);
-    //    }
-    // }
-    // public static void Falsepressed2(int questiontoask2){
-    //    if(answerlist[questiontoask2] == "false"){
-    //         MovePlayer(2);
-    //         MainOverlay.SetActive(true);
-    //         QuestionOverlay.SetActive(false);
-    //         QuestionOverlay2.SetActive(false);
-    //    }
-    //    else if(answerlist[questiontoask2] == "true"){
-    //         Debug.Log("the answer was meant to be true. " + questiontoask2);
-    //         MainOverlay.SetActive(true);
-    //         QuestionOverlay.SetActive(false);
-    //         QuestionOverlay2.SetActive(false);
-    //    }
-    // }
+    public static void disableGlobalCamera(){
+        Mcamera.SetActive(false);
+    }
+    public static void enableGlobalCamera(){
+        Mcamera.SetActive(true);
+    }
 
 
     public static void MovePlayer(int playerToMove)
@@ -308,31 +218,7 @@ public class GameControl : MonoBehaviour {
     }
     
 
-    // public static void coloureddice(int playerToMove, int randomDiceSide)
-    // {
-    //     switch(randomDiceSide){
-    //         case 0: 
-         
-    //             DiceColour = "Red";
-    //             break;
-    //         case 1: 
-    //             DiceColour = "Yellow";
-    //             break;
-    //         case 2: 
-    //             DiceColour = "Purple";
-    //             break;
-    //         case 3:    
-    //             DiceColour = "Blue";
-    //             break;
-    //         case 4:        
-    //             DiceColour = "Orange";
-    //             break;
-    //         case 5:         
-    //             DiceColour = "Green";
-    //             break;
-    //     }
-    //     return;
-    // }
+    
 
 
 
@@ -365,7 +251,6 @@ public class GameControl : MonoBehaviour {
           break;
       }
     }
-
 
 
     // public static void gameend(string winner){
