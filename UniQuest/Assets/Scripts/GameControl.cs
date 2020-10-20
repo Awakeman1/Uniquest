@@ -34,10 +34,21 @@ public class GameControl : MonoBehaviour {
     public static int diceSideThrown = 0;   
     public static int WhosTurn = 1;
 
+    public static GameObject mainUI;
+    public static GameObject GameOverUI;
+
+    public static GameObject QuestionUI;
+
+    public static Boolean QuestionCorrect = false;
     
-    void Start()
+    public void Start()
     {
         NumberofPlayers = MainMenu.NumPlayers;
+        mainUI = GameObject.Find("Canvas");
+        GameOverUI = GameObject.Find("GameOver");
+        QuestionUI = GameObject.Find("QuestionUI");
+        GameOverUI.SetActive(false);
+        QuestionUI.SetActive(false);
         
         switch(NumberofPlayers){
             case 2:
@@ -285,87 +296,113 @@ public class GameControl : MonoBehaviour {
                 Player10.GetComponent<AudioListener>().enabled = false;
             break;
         }
-      
-        
-        
+
         Mcamera = GameObject.Find("MainCamera");
         Mcamera.SetActive(true);
         Mcamera.GetComponent<AudioListener>().enabled = false;
         
     }
 
-   
 
     void Update()
     {
-        if (Player1.GetComponent<FollowThePath>().waypointIndex == Player1.GetComponent<FollowThePath>().waypoints.Length)
+        if (Player1.GetComponent<FollowThePath>().waypointIndex == 34)
         {
             Player1.GetComponent<FollowThePath>().moveAllowed = false;
             Debug.Log("Game Over, Player1 Wins");
             GameControl.WhosTurn = 0;
+            mainUI.SetActive(false);
+            GameOverUI.SetActive(true);
+            GameOverUI.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>().text = "Player 1";
         }
-        if (Player2.GetComponent<FollowThePath>().waypointIndex == Player2.GetComponent<FollowThePath>().waypoints.Length)
+        if (Player2.GetComponent<FollowThePath>().waypointIndex == 34)
         {
             Player2.GetComponent<FollowThePath>().moveAllowed = false;
             Debug.Log("Game Over, Player2 Wins");
             GameControl.WhosTurn = 0;
+            mainUI.SetActive(false);
+            GameOverUI.SetActive(true);
+            GameOverUI.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>().text = "Player 2";
         }
-        if (Player3.GetComponent<FollowThePath>().waypointIndex == Player3.GetComponent<FollowThePath>().waypoints.Length)
+        if (Player3.GetComponent<FollowThePath>().waypointIndex == 34)
         {
             Player3.GetComponent<FollowThePath>().moveAllowed = false;
             Debug.Log("Game Over, Player3 Wins");
             GameControl.WhosTurn = 0;
+            mainUI.SetActive(false);
+            GameOverUI.SetActive(true);
+            GameOverUI.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>().text = "Player 3";
         }
-        if (Player4.GetComponent<FollowThePath>().waypointIndex == Player4.GetComponent<FollowThePath>().waypoints.Length)
+        if (Player4.GetComponent<FollowThePath>().waypointIndex == 34)
         {
             Player4.GetComponent<FollowThePath>().moveAllowed = false;
             Debug.Log("Game Over, Player4 Wins");
             GameControl.WhosTurn = 0;
+            mainUI.SetActive(false);
+            GameOverUI.SetActive(true);
+            GameOverUI.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>().text = "Player 4";
         }
-        if (Player5.GetComponent<FollowThePath>().waypointIndex == Player5.GetComponent<FollowThePath>().waypoints.Length)
+        if (Player5.GetComponent<FollowThePath>().waypointIndex == 34)
         {
             Player5.GetComponent<FollowThePath>().moveAllowed = false;
             Debug.Log("Game Over, Player5 Wins");
             GameControl.WhosTurn = 0;
+            mainUI.SetActive(false);
+            GameOverUI.SetActive(true);
+            GameOverUI.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>().text = "Player 5";
         }
-        if (Player6.GetComponent<FollowThePath>().waypointIndex == Player6.GetComponent<FollowThePath>().waypoints.Length)
+        if (Player6.GetComponent<FollowThePath>().waypointIndex == 34)
         {
             Player6.GetComponent<FollowThePath>().moveAllowed = false;
             Debug.Log("Game Over, Player6 Wins");
             GameControl.WhosTurn = 0;
+            mainUI.SetActive(false);
+            GameOverUI.SetActive(true);
+            GameOverUI.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>().text = "Player 6";
         }
-        if (Player7.GetComponent<FollowThePath>().waypointIndex == Player7.GetComponent<FollowThePath>().waypoints.Length)
+        if (Player7.GetComponent<FollowThePath>().waypointIndex == 34)
         {
             Player7.GetComponent<FollowThePath>().moveAllowed = false;
             Debug.Log("Game Over, Player7 Wins");
             GameControl.WhosTurn = 0;
+            mainUI.SetActive(false);
+            GameOverUI.SetActive(true);
+            GameOverUI.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>().text = "Player 7";
         }
-        if (Player8.GetComponent<FollowThePath>().waypointIndex == Player8.GetComponent<FollowThePath>().waypoints.Length)
+        if (Player8.GetComponent<FollowThePath>().waypointIndex == 34)
         {
             Player8.GetComponent<FollowThePath>().moveAllowed = false;
             Debug.Log("Game Over, Player8 Wins");
             GameControl.WhosTurn = 0;
+            mainUI.SetActive(false);
+            GameOverUI.SetActive(true);
+            GameOverUI.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>().text = "Player 8";
         }
-        if (Player9.GetComponent<FollowThePath>().waypointIndex == Player9.GetComponent<FollowThePath>().waypoints.Length)
+        if (Player9.GetComponent<FollowThePath>().waypointIndex == 34)
         {
             Player9.GetComponent<FollowThePath>().moveAllowed = false;
             Debug.Log("Game Over, Player9 Wins");
             GameControl.WhosTurn = 0;
+            mainUI.SetActive(false);
+            GameOverUI.SetActive(true);
+            GameOverUI.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>().text = "Player 9";
         }
-        if (Player10.GetComponent<FollowThePath>().waypointIndex == Player10.GetComponent<FollowThePath>().waypoints.Length)
+        if (Player10.GetComponent<FollowThePath>().waypointIndex == 34)
         {
             Player10.GetComponent<FollowThePath>().moveAllowed = false;
             Debug.Log("Game Over, Player10 Wins");
             GameControl.WhosTurn = 0;
+            mainUI.SetActive(false);
+            GameOverUI.SetActive(true);
+            GameOverUI.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>().text = "Player 10";
         }
-
-
-
 
 
         if(Player1.GetComponent<FollowThePath>().waypointIndex > player1StartWaypoint + diceSideThrown){
             Player1.GetComponent<FollowThePath>().moveAllowed = false;
             player1StartWaypoint = Player1.GetComponent<FollowThePath>().waypointIndex - 1;
+
+            
 
             switch(Player1.GetComponent<FollowThePath>().waypointIndex){
                 case 4:
@@ -793,34 +830,93 @@ public class GameControl : MonoBehaviour {
         Debug.Log("Moveplayer");
         switch(WhoMoves){
             case 1:
-                Player1.GetComponent<FollowThePath>().moveAllowed = true;
+
+
+
+
+
+
+
+
+
+                if(QuestionCorrect){
+                    Player1.GetComponent<FollowThePath>().moveAllowed = true;
+                }
+                else{
+                    Player1.GetComponent<FollowThePath>().moveAllowed = false;
+                }
                 break;
             case 2:
-                Player2.GetComponent<FollowThePath>().moveAllowed = true;
+                if(QuestionCorrect){
+                    Player2.GetComponent<FollowThePath>().moveAllowed = true;
+                }
+                else{
+                    Player2.GetComponent<FollowThePath>().moveAllowed = false;
+                }
                 break;
             case 3:
-                Player3.GetComponent<FollowThePath>().moveAllowed = true;
+                if(QuestionCorrect){
+                    Player3.GetComponent<FollowThePath>().moveAllowed = true;
+                }
+                else{
+                    Player3.GetComponent<FollowThePath>().moveAllowed = false;
+                }
                 break;
             case 4:
-                Player4.GetComponent<FollowThePath>().moveAllowed = true;
+                if(QuestionCorrect){
+                    Player4.GetComponent<FollowThePath>().moveAllowed = true;
+                }
+                else{
+                    Player4.GetComponent<FollowThePath>().moveAllowed = false;
+                }
                 break;
             case 5:
-                Player5.GetComponent<FollowThePath>().moveAllowed = true;
+                if(QuestionCorrect){
+                    Player5.GetComponent<FollowThePath>().moveAllowed = true;
+                }
+                else{
+                    Player5.GetComponent<FollowThePath>().moveAllowed = false;
+                }
                 break;
             case 6:
-                Player6.GetComponent<FollowThePath>().moveAllowed = true;
+                if(QuestionCorrect){
+                    Player6.GetComponent<FollowThePath>().moveAllowed = true;
+                }
+                else{
+                    Player6.GetComponent<FollowThePath>().moveAllowed = false;
+                }
                 break;
             case 7:
-                Player7.GetComponent<FollowThePath>().moveAllowed = true;
+                if(QuestionCorrect){
+                    Player7.GetComponent<FollowThePath>().moveAllowed = true;
+                }
+                else{
+                    Player7.GetComponent<FollowThePath>().moveAllowed = false;
+                }
                 break;
             case 8:
-                Player8.GetComponent<FollowThePath>().moveAllowed = true;
+                if(QuestionCorrect){
+                    Player8.GetComponent<FollowThePath>().moveAllowed = true;
+                }
+                else{
+                    Player8.GetComponent<FollowThePath>().moveAllowed = false;
+                }
                 break;
             case 9:
-                Player9.GetComponent<FollowThePath>().moveAllowed = true;
+                if(QuestionCorrect){
+                    Player9.GetComponent<FollowThePath>().moveAllowed = true;
+                }
+                else{
+                    Player9.GetComponent<FollowThePath>().moveAllowed = false;
+                }
                 break;
             case 10:
-                Player10.GetComponent<FollowThePath>().moveAllowed = true;
+                if(QuestionCorrect){
+                    Player10.GetComponent<FollowThePath>().moveAllowed = true;
+                }
+                else{
+                    Player10.GetComponent<FollowThePath>().moveAllowed = false;
+                }
                 break;
         }
     }

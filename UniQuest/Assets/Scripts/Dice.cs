@@ -53,6 +53,7 @@ public class Dice : MonoBehaviour {
             if(GameControl.WhosTurn > MainMenu.NumPlayers){
                 GameControl.WhosTurn = 1;
             }
+            Debug.Log(GameControl.WhosTurn);
             GameControl.MovePlayer(GameControl.WhosTurn);
             GameControl.WhosTurn++;
             coroutineAllowed = true;
