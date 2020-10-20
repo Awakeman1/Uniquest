@@ -17,7 +17,6 @@ public class MainMenu : MonoBehaviour
         mmCanvas.transform.GetChild(1).gameObject.SetActive(true);
         mmCanvas.transform.GetChild(2).gameObject.SetActive(false);
         mmCanvas.transform.GetChild(3).gameObject.SetActive(false); 
-        
     }
        
   public void OptionMenu()
@@ -26,8 +25,6 @@ public class MainMenu : MonoBehaviour
         mmCanvas.transform.GetChild(1).gameObject.SetActive(false);
         mmCanvas.transform.GetChild(2).gameObject.SetActive(false);
         mmCanvas.transform.GetChild(3).gameObject.SetActive(true);
-       
-    
     }
 
 
@@ -37,9 +34,7 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Newgame");
         mmCanvas.transform.GetChild(1).gameObject.SetActive(false);
         mmCanvas.transform.GetChild(2).gameObject.SetActive(true);
-        mmCanvas.transform.GetChild(3).gameObject.SetActive(false); 
-       
-       
+        mmCanvas.transform.GetChild(3).gameObject.SetActive(false);      
     }
 
     public void playercountplus()
@@ -65,11 +60,13 @@ public class MainMenu : MonoBehaviour
     }
 
   
-    public void StartGame(){
+    public void StartGame()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void Back(){
+    public void Back()
+    {
         Debug.Log("Back");
         mmCanvas.transform.GetChild(1).gameObject.SetActive(true);
         mmCanvas.transform.GetChild(2).gameObject.SetActive(false);

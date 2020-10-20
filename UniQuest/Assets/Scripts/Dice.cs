@@ -8,9 +8,8 @@ public class Dice : MonoBehaviour {
 
     private Sprite ds1, ds2, ds3, ds4, ds5, ds6;
     public List<Sprite> DiceSides = new List<Sprite>();
-    private int whosTurn = 1;
+    
     private bool coroutineAllowed = true;
-
     public GameObject canvas;
 
     public void OnMouseDown()
@@ -30,48 +29,38 @@ public class Dice : MonoBehaviour {
         
         canvas = GameObject.Find("Canvas");
 
-
         Debug.Log("D MouseDown");
         Debug.Log(DiceSides);
-        //if (!GameControl.gameOver && coroutineAllowed)
-        if (coroutineAllowed)
+       
+        if (coroutineAllowed){
             StartCoroutine("RollTheDice");
-
+        }
     }
 
     private IEnumerator RollTheDice()
     {
-        Debug.Log("D RollTheDice");
-        coroutineAllowed = false;
-        int randomDiceSide = 0;
-        for (int i = 0; i <= 20; i++)
-        {
-            randomDiceSide = Random.Range(0, 6);
-            canvas.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = DiceSides[randomDiceSide];
-            
-            yield return new WaitForSeconds(0.12f);
-        }
-
-        GameControl.diceSideThrown = randomDiceSide + 1;
-        if (whosTurn == 1)
-        {
-            
-            //  GameControl.coloureddice(1, randomDiceSide);
-            //GameControl.diceSideThrown = randomDiceSide + 1;
-            // GameControl.AskQuestion(1);
-            Debug.Log(randomDiceSide + 1);
-            GameControl.MovePlayer(1);
-
-        } else if (whosTurn == -1)
-        {
-            
-            // GameControl.coloureddice(2, randomDiceSide);
-            //GameControl.diceSideThrown = randomDiceSide + 1;
-            Debug.Log(randomDiceSide + 1);
-            // GameControl.AskQuestion(2);
-            GameControl.MovePlayer(2);
-        }
-        whosTurn *= -1;
-        coroutineAllowed = true;
+       if(GameControl.WhosTurn != 0)
+       {
+            coroutineAllowed = false;
+            int randomDiceSide = 0;
+            for (int i = 0; i <= 20; i++)
+            {
+                randomDiceSide = Random.Range(0, 6);
+                canvas.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = DiceSides[randomDiceSide];       
+                yield return new WaitForSeconds(0.12f);
+            }
+            GameControl.diceSideThrown = randomDiceSide + 1;
+            if(GameControl.WhosTurn > MainMenu.NumPlayers){
+                GameControl.WhosTurn = 1;
+            }
+            GameControl.MovePlayer(GameControl.WhosTurn);
+            GameControl.WhosTurn++;
+            coroutineAllowed = true;
+       }
+       else{
+           Debug.Log("Game Is Over. Cannot Roll");
+       }
+       
+        
     }
 }
