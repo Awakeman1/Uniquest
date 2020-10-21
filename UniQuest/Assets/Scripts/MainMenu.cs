@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+// using Mono.Data.Sqlite;
 
 public class MainMenu : MonoBehaviour
 {
@@ -10,21 +11,32 @@ public class MainMenu : MonoBehaviour
     public static int NumPlayers = 2;
 
 
+
     public void Start()
     {
         mmCanvas = GameObject.Find("Canvas");
         Debug.Log("Start");
-        mmCanvas.transform.GetChild(1).gameObject.SetActive(true);
-        mmCanvas.transform.GetChild(2).gameObject.SetActive(false);
+        mmCanvas.transform.GetChild(0).gameObject.SetActive(true);
+        mmCanvas.transform.GetChild(1).gameObject.SetActive(false);
+
+        mmCanvas.transform.GetChild(2).gameObject.SetActive(true);
         mmCanvas.transform.GetChild(3).gameObject.SetActive(false); 
+        mmCanvas.transform.GetChild(4).gameObject.SetActive(false);
+        mmCanvas.transform.GetChild(5).gameObject.SetActive(false);
+        mmCanvas.transform.GetChild(6).gameObject.SetActive(false);
     }
        
   public void OptionMenu()
     {
         Debug.Log("Options");
+        mmCanvas.transform.GetChild(0).gameObject.SetActive(true);
         mmCanvas.transform.GetChild(1).gameObject.SetActive(false);
+
         mmCanvas.transform.GetChild(2).gameObject.SetActive(false);
-        mmCanvas.transform.GetChild(3).gameObject.SetActive(true);
+        mmCanvas.transform.GetChild(3).gameObject.SetActive(false); 
+        mmCanvas.transform.GetChild(4).gameObject.SetActive(true);
+        mmCanvas.transform.GetChild(5).gameObject.SetActive(false);
+        mmCanvas.transform.GetChild(6).gameObject.SetActive(false);
     }
 
 
@@ -32,9 +44,14 @@ public class MainMenu : MonoBehaviour
     public void NewGame ()
     {
         Debug.Log("Newgame");
+        mmCanvas.transform.GetChild(0).gameObject.SetActive(true);
         mmCanvas.transform.GetChild(1).gameObject.SetActive(false);
-        mmCanvas.transform.GetChild(2).gameObject.SetActive(true);
-        mmCanvas.transform.GetChild(3).gameObject.SetActive(false);      
+
+        mmCanvas.transform.GetChild(2).gameObject.SetActive(false);
+        mmCanvas.transform.GetChild(3).gameObject.SetActive(true); 
+        mmCanvas.transform.GetChild(4).gameObject.SetActive(false);
+        mmCanvas.transform.GetChild(5).gameObject.SetActive(false);
+        mmCanvas.transform.GetChild(6).gameObject.SetActive(false);;  
     }
 
     public void playercountplus()
@@ -68,10 +85,40 @@ public class MainMenu : MonoBehaviour
     public void Back()
     {
         Debug.Log("Back");
+        mmCanvas.transform.GetChild(0).gameObject.SetActive(true);
+        mmCanvas.transform.GetChild(1).gameObject.SetActive(false);
+
+        mmCanvas.transform.GetChild(2).gameObject.SetActive(true);
+        mmCanvas.transform.GetChild(3).gameObject.SetActive(false); 
+        mmCanvas.transform.GetChild(4).gameObject.SetActive(false);
+        mmCanvas.transform.GetChild(5).gameObject.SetActive(false);
+        mmCanvas.transform.GetChild(6).gameObject.SetActive(false);
+    }
+
+    public void AddQuestion()
+    {
+        Debug.Log("Add Qn");
+        mmCanvas.transform.GetChild(0).gameObject.SetActive(false);
         mmCanvas.transform.GetChild(1).gameObject.SetActive(true);
+
         mmCanvas.transform.GetChild(2).gameObject.SetActive(false);
-        mmCanvas.transform.GetChild(3).gameObject.SetActive(false);
-        
+        mmCanvas.transform.GetChild(3).gameObject.SetActive(false); 
+        mmCanvas.transform.GetChild(4).gameObject.SetActive(false);
+        mmCanvas.transform.GetChild(5).gameObject.SetActive(true);
+        mmCanvas.transform.GetChild(6).gameObject.SetActive(false);
+    }
+
+    public void RMQuestion()
+    {
+        Debug.Log("Rm Question");
+        mmCanvas.transform.GetChild(0).gameObject.SetActive(false);
+        mmCanvas.transform.GetChild(1).gameObject.SetActive(true);
+
+        mmCanvas.transform.GetChild(2).gameObject.SetActive(false);
+        mmCanvas.transform.GetChild(3).gameObject.SetActive(false); 
+        mmCanvas.transform.GetChild(4).gameObject.SetActive(false);
+        mmCanvas.transform.GetChild(5).gameObject.SetActive(false);
+        mmCanvas.transform.GetChild(6).gameObject.SetActive(true);
     }
 
 
