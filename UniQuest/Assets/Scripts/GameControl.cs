@@ -831,26 +831,26 @@ public class GameControl : MonoBehaviour {
                 break;
             case 2:
 
-                string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
+                // string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
                 
-                IDbCommand dbcmd = dbconn.CreateCommand();
-                dbcmd.CommandText = getqn;
-                IDataReader reader = dbcmd.ExecuteReader();
-                while(reader.Read())
-                {
-                    int test = reader.GetInt32(0);
-                    Question_Question = reader.GetString(1);
-                    Question_Answer1 = reader.GetString(2);
-                    Question_Answer2 = reader.GetString(3);
-                    Question_Answer3 = reader.GetString(4);
-                    Question_Correct = reader.GetString(5);
+                // IDbCommand dbcmd = dbconn.CreateCommand();
+                // dbcmd.CommandText = getqn;
+                // IDataReader reader = dbcmd.ExecuteReader();
+                // while(reader.Read())
+                // {
+                //     int test = reader.GetInt32(0);
+                //     Question_Question = reader.GetString(1);
+                //     Question_Answer1 = reader.GetString(2);
+                //     Question_Answer2 = reader.GetString(3);
+                //     Question_Answer3 = reader.GetString(4);
+                //     Question_Correct = reader.GetString(5);
                     
-                }
-                    Debug.Log("Qn: " + Question_Question);
-                    Debug.Log("ans1: " + Question_Answer1);
-                    Debug.Log("ans2: " + Question_Answer2);
-                    Debug.Log("ans3: " + Question_Answer3);
-                    Debug.Log("Correct: " + Question_Correct);
+                // }
+                //     Debug.Log("Qn: " + Question_Question);
+                //     Debug.Log("ans1: " + Question_Answer1);
+                //     Debug.Log("ans2: " + Question_Answer2);
+                //     Debug.Log("ans3: " + Question_Answer3);
+                //     Debug.Log("Correct: " + Question_Correct);
 
 
                 if(QuestionCorrect){
@@ -861,26 +861,26 @@ public class GameControl : MonoBehaviour {
                 }
                 break;
             case 3:
-                string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
+                // string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
                 
-                IDbCommand dbcmd = dbconn.CreateCommand();
-                dbcmd.CommandText = getqn;
-                IDataReader reader = dbcmd.ExecuteReader();
-                while(reader.Read())
-                {
-                    int test = reader.GetInt32(0);
-                    Question_Question = reader.GetString(1);
-                    Question_Answer1 = reader.GetString(2);
-                    Question_Answer2 = reader.GetString(3);
-                    Question_Answer3 = reader.GetString(4);
-                    Question_Correct = reader.GetString(5);
+                // IDbCommand dbcmd = dbconn.CreateCommand();
+                // dbcmd.CommandText = getqn;
+                // IDataReader reader = dbcmd.ExecuteReader();
+                // while(reader.Read())
+                // {
+                //     int test = reader.GetInt32(0);
+                //     Question_Question = reader.GetString(1);
+                //     Question_Answer1 = reader.GetString(2);
+                //     Question_Answer2 = reader.GetString(3);
+                //     Question_Answer3 = reader.GetString(4);
+                //     Question_Correct = reader.GetString(5);
                     
-                }
-                    Debug.Log("Qn: " + Question_Question);
-                    Debug.Log("ans1: " + Question_Answer1);
-                    Debug.Log("ans2: " + Question_Answer2);
-                    Debug.Log("ans3: " + Question_Answer3);
-                    Debug.Log("Correct: " + Question_Correct);
+                // }
+                //     Debug.Log("Qn: " + Question_Question);
+                //     Debug.Log("ans1: " + Question_Answer1);
+                //     Debug.Log("ans2: " + Question_Answer2);
+                //     Debug.Log("ans3: " + Question_Answer3);
+                //     Debug.Log("Correct: " + Question_Correct);
                 if(QuestionCorrect){
                     Player3.GetComponent<FollowThePath>().moveAllowed = true;
                 }
@@ -889,26 +889,26 @@ public class GameControl : MonoBehaviour {
                 }
                 break;
             case 4:
-                string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
+                // string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
                 
-                IDbCommand dbcmd = dbconn.CreateCommand();
-                dbcmd.CommandText = getqn;
-                IDataReader reader = dbcmd.ExecuteReader();
-                while(reader.Read())
-                {
-                    int test = reader.GetInt32(0);
-                    Question_Question = reader.GetString(1);
-                    Question_Answer1 = reader.GetString(2);
-                    Question_Answer2 = reader.GetString(3);
-                    Question_Answer3 = reader.GetString(4);
-                    Question_Correct = reader.GetString(5);
+                // IDbCommand dbcmd = dbconn.CreateCommand();
+                // dbcmd.CommandText = getqn;
+                // IDataReader reader = dbcmd.ExecuteReader();
+                // while(reader.Read())
+                // {
+                //     int test = reader.GetInt32(0);
+                //     Question_Question = reader.GetString(1);
+                //     Question_Answer1 = reader.GetString(2);
+                //     Question_Answer2 = reader.GetString(3);
+                //     Question_Answer3 = reader.GetString(4);
+                //     Question_Correct = reader.GetString(5);
                     
-                }
-                    Debug.Log("Qn: " + Question_Question);
-                    Debug.Log("ans1: " + Question_Answer1);
-                    Debug.Log("ans2: " + Question_Answer2);
-                    Debug.Log("ans3: " + Question_Answer3);
-                    Debug.Log("Correct: " + Question_Correct);
+                // }
+                //     Debug.Log("Qn: " + Question_Question);
+                //     Debug.Log("ans1: " + Question_Answer1);
+                //     Debug.Log("ans2: " + Question_Answer2);
+                //     Debug.Log("ans3: " + Question_Answer3);
+                //     Debug.Log("Correct: " + Question_Correct);
                 if(QuestionCorrect){
                     Player4.GetComponent<FollowThePath>().moveAllowed = true;
                 }
@@ -917,26 +917,26 @@ public class GameControl : MonoBehaviour {
                 }
                 break;
             case 5:
-                string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
+                // string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
                 
-                IDbCommand dbcmd = dbconn.CreateCommand();
-                dbcmd.CommandText = getqn;
-                IDataReader reader = dbcmd.ExecuteReader();
-                while(reader.Read())
-                {
-                    int test = reader.GetInt32(0);
-                    Question_Question = reader.GetString(1);
-                    Question_Answer1 = reader.GetString(2);
-                    Question_Answer2 = reader.GetString(3);
-                    Question_Answer3 = reader.GetString(4);
-                    Question_Correct = reader.GetString(5);
+                // IDbCommand dbcmd = dbconn.CreateCommand();
+                // dbcmd.CommandText = getqn;
+                // IDataReader reader = dbcmd.ExecuteReader();
+                // while(reader.Read())
+                // {
+                //     int test = reader.GetInt32(0);
+                //     Question_Question = reader.GetString(1);
+                //     Question_Answer1 = reader.GetString(2);
+                //     Question_Answer2 = reader.GetString(3);
+                //     Question_Answer3 = reader.GetString(4);
+                //     Question_Correct = reader.GetString(5);
                     
-                }
-                    Debug.Log("Qn: " + Question_Question);
-                    Debug.Log("ans1: " + Question_Answer1);
-                    Debug.Log("ans2: " + Question_Answer2);
-                    Debug.Log("ans3: " + Question_Answer3);
-                    Debug.Log("Correct: " + Question_Correct);
+                // }
+                //     Debug.Log("Qn: " + Question_Question);
+                //     Debug.Log("ans1: " + Question_Answer1);
+                //     Debug.Log("ans2: " + Question_Answer2);
+                //     Debug.Log("ans3: " + Question_Answer3);
+                //     Debug.Log("Correct: " + Question_Correct);
                 if(QuestionCorrect){
                     Player5.GetComponent<FollowThePath>().moveAllowed = true;
                 }
@@ -945,26 +945,26 @@ public class GameControl : MonoBehaviour {
                 }
                 break;
             case 6:
-                string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
+                // string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
                 
-                IDbCommand dbcmd = dbconn.CreateCommand();
-                dbcmd.CommandText = getqn;
-                IDataReader reader = dbcmd.ExecuteReader();
-                while(reader.Read())
-                {
-                    int test = reader.GetInt32(0);
-                    Question_Question = reader.GetString(1);
-                    Question_Answer1 = reader.GetString(2);
-                    Question_Answer2 = reader.GetString(3);
-                    Question_Answer3 = reader.GetString(4);
-                    Question_Correct = reader.GetString(5);
+                // IDbCommand dbcmd = dbconn.CreateCommand();
+                // dbcmd.CommandText = getqn;
+                // IDataReader reader = dbcmd.ExecuteReader();
+                // while(reader.Read())
+                // {
+                //     int test = reader.GetInt32(0);
+                //     Question_Question = reader.GetString(1);
+                //     Question_Answer1 = reader.GetString(2);
+                //     Question_Answer2 = reader.GetString(3);
+                //     Question_Answer3 = reader.GetString(4);
+                //     Question_Correct = reader.GetString(5);
                     
-                }
-                    Debug.Log("Qn: " + Question_Question);
-                    Debug.Log("ans1: " + Question_Answer1);
-                    Debug.Log("ans2: " + Question_Answer2);
-                    Debug.Log("ans3: " + Question_Answer3);
-                    Debug.Log("Correct: " + Question_Correct);
+                // }
+                //     Debug.Log("Qn: " + Question_Question);
+                //     Debug.Log("ans1: " + Question_Answer1);
+                //     Debug.Log("ans2: " + Question_Answer2);
+                //     Debug.Log("ans3: " + Question_Answer3);
+                //     Debug.Log("Correct: " + Question_Correct);
                 if(QuestionCorrect){
                     Player6.GetComponent<FollowThePath>().moveAllowed = true;
                 }
@@ -973,26 +973,26 @@ public class GameControl : MonoBehaviour {
                 }
                 break;
             case 7:
-                string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
+                // string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
                 
-                IDbCommand dbcmd = dbconn.CreateCommand();
-                dbcmd.CommandText = getqn;
-                IDataReader reader = dbcmd.ExecuteReader();
-                while(reader.Read())
-                {
-                    int test = reader.GetInt32(0);
-                    Question_Question = reader.GetString(1);
-                    Question_Answer1 = reader.GetString(2);
-                    Question_Answer2 = reader.GetString(3);
-                    Question_Answer3 = reader.GetString(4);
-                    Question_Correct = reader.GetString(5);
+                // IDbCommand dbcmd = dbconn.CreateCommand();
+                // dbcmd.CommandText = getqn;
+                // IDataReader reader = dbcmd.ExecuteReader();
+                // while(reader.Read())
+                // {
+                //     int test = reader.GetInt32(0);
+                //     Question_Question = reader.GetString(1);
+                //     Question_Answer1 = reader.GetString(2);
+                //     Question_Answer2 = reader.GetString(3);
+                //     Question_Answer3 = reader.GetString(4);
+                //     Question_Correct = reader.GetString(5);
                     
-                }
-                    Debug.Log("Qn: " + Question_Question);
-                    Debug.Log("ans1: " + Question_Answer1);
-                    Debug.Log("ans2: " + Question_Answer2);
-                    Debug.Log("ans3: " + Question_Answer3);
-                    Debug.Log("Correct: " + Question_Correct);
+                // }
+                //     Debug.Log("Qn: " + Question_Question);
+                //     Debug.Log("ans1: " + Question_Answer1);
+                //     Debug.Log("ans2: " + Question_Answer2);
+                //     Debug.Log("ans3: " + Question_Answer3);
+                //     Debug.Log("Correct: " + Question_Correct);
                 if(QuestionCorrect){
                     Player7.GetComponent<FollowThePath>().moveAllowed = true;
                 }
@@ -1001,26 +1001,26 @@ public class GameControl : MonoBehaviour {
                 }
                 break;
             case 8:
-                string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
+                // string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
                 
-                IDbCommand dbcmd = dbconn.CreateCommand();
-                dbcmd.CommandText = getqn;
-                IDataReader reader = dbcmd.ExecuteReader();
-                while(reader.Read())
-                {
-                    int test = reader.GetInt32(0);
-                    Question_Question = reader.GetString(1);
-                    Question_Answer1 = reader.GetString(2);
-                    Question_Answer2 = reader.GetString(3);
-                    Question_Answer3 = reader.GetString(4);
-                    Question_Correct = reader.GetString(5);
+                // IDbCommand dbcmd = dbconn.CreateCommand();
+                // dbcmd.CommandText = getqn;
+                // IDataReader reader = dbcmd.ExecuteReader();
+                // while(reader.Read())
+                // {
+                //     int test = reader.GetInt32(0);
+                //     Question_Question = reader.GetString(1);
+                //     Question_Answer1 = reader.GetString(2);
+                //     Question_Answer2 = reader.GetString(3);
+                //     Question_Answer3 = reader.GetString(4);
+                //     Question_Correct = reader.GetString(5);
                     
-                }
-                    Debug.Log("Qn: " + Question_Question);
-                    Debug.Log("ans1: " + Question_Answer1);
-                    Debug.Log("ans2: " + Question_Answer2);
-                    Debug.Log("ans3: " + Question_Answer3);
-                    Debug.Log("Correct: " + Question_Correct);
+                // }
+                //     Debug.Log("Qn: " + Question_Question);
+                //     Debug.Log("ans1: " + Question_Answer1);
+                //     Debug.Log("ans2: " + Question_Answer2);
+                //     Debug.Log("ans3: " + Question_Answer3);
+                //     Debug.Log("Correct: " + Question_Correct);
                 if(QuestionCorrect){
                     Player8.GetComponent<FollowThePath>().moveAllowed = true;
                 }
@@ -1029,26 +1029,26 @@ public class GameControl : MonoBehaviour {
                 }
                 break;
             case 9:
-                string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
+                // string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
                 
-                IDbCommand dbcmd = dbconn.CreateCommand();
-                dbcmd.CommandText = getqn;
-                IDataReader reader = dbcmd.ExecuteReader();
-                while(reader.Read())
-                {
-                    int test = reader.GetInt32(0);
-                    Question_Question = reader.GetString(1);
-                    Question_Answer1 = reader.GetString(2);
-                    Question_Answer2 = reader.GetString(3);
-                    Question_Answer3 = reader.GetString(4);
-                    Question_Correct = reader.GetString(5);
+                // IDbCommand dbcmd = dbconn.CreateCommand();
+                // dbcmd.CommandText = getqn;
+                // IDataReader reader = dbcmd.ExecuteReader();
+                // while(reader.Read())
+                // {
+                //     int test = reader.GetInt32(0);
+                //     Question_Question = reader.GetString(1);
+                //     Question_Answer1 = reader.GetString(2);
+                //     Question_Answer2 = reader.GetString(3);
+                //     Question_Answer3 = reader.GetString(4);
+                //     Question_Correct = reader.GetString(5);
                     
-                }
-                    Debug.Log("Qn: " + Question_Question);
-                    Debug.Log("ans1: " + Question_Answer1);
-                    Debug.Log("ans2: " + Question_Answer2);
-                    Debug.Log("ans3: " + Question_Answer3);
-                    Debug.Log("Correct: " + Question_Correct);
+                // }
+                //     Debug.Log("Qn: " + Question_Question);
+                //     Debug.Log("ans1: " + Question_Answer1);
+                //     Debug.Log("ans2: " + Question_Answer2);
+                //     Debug.Log("ans3: " + Question_Answer3);
+                //     Debug.Log("Correct: " + Question_Correct);
                 if(QuestionCorrect){
                     Player9.GetComponent<FollowThePath>().moveAllowed = true;
                 }
@@ -1057,26 +1057,26 @@ public class GameControl : MonoBehaviour {
                 }
                 break;
             case 10:
-                string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
+                // string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
                 
-                IDbCommand dbcmd = dbconn.CreateCommand();
-                dbcmd.CommandText = getqn;
-                IDataReader reader = dbcmd.ExecuteReader();
-                while(reader.Read())
-                {
-                    int test = reader.GetInt32(0);
-                    Question_Question = reader.GetString(1);
-                    Question_Answer1 = reader.GetString(2);
-                    Question_Answer2 = reader.GetString(3);
-                    Question_Answer3 = reader.GetString(4);
-                    Question_Correct = reader.GetString(5);
+                // IDbCommand dbcmd = dbconn.CreateCommand();
+                // dbcmd.CommandText = getqn;
+                // IDataReader reader = dbcmd.ExecuteReader();
+                // while(reader.Read())
+                // {
+                //     int test = reader.GetInt32(0);
+                //     Question_Question = reader.GetString(1);
+                //     Question_Answer1 = reader.GetString(2);
+                //     Question_Answer2 = reader.GetString(3);
+                //     Question_Answer3 = reader.GetString(4);
+                //     Question_Correct = reader.GetString(5);
                     
-                }
-                    Debug.Log("Qn: " + Question_Question);
-                    Debug.Log("ans1: " + Question_Answer1);
-                    Debug.Log("ans2: " + Question_Answer2);
-                    Debug.Log("ans3: " + Question_Answer3);
-                    Debug.Log("Correct: " + Question_Correct);
+                // }
+                //     Debug.Log("Qn: " + Question_Question);
+                //     Debug.Log("ans1: " + Question_Answer1);
+                //     Debug.Log("ans2: " + Question_Answer2);
+                //     Debug.Log("ans3: " + Question_Answer3);
+                //     Debug.Log("Correct: " + Question_Correct);
                 if(QuestionCorrect){
                     Player10.GetComponent<FollowThePath>().moveAllowed = true;
                 }
