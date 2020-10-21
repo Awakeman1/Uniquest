@@ -4,6 +4,8 @@ using System;
 using System.Collections; 
 using System.Collections.Generic;
 using System.IO;
+using System.Data;
+using Mono.Data.Sqlite;
 
 
 public class GameControl : MonoBehaviour {
@@ -29,7 +31,6 @@ public class GameControl : MonoBehaviour {
     public static int player9StartWaypoint = 0;
     public static int player10StartWaypoint = 0;
 
-
     public int NumberofPlayers;
     private static GameObject Mcamera;
     public static int diceSideThrown = 0;   
@@ -37,13 +38,29 @@ public class GameControl : MonoBehaviour {
 
     public static GameObject mainUI;
     public static GameObject GameOverUI;
-
     public static GameObject QuestionUI;
 
-    public static Boolean QuestionCorrect = false;
+
+
+    public static Boolean QuestionCorrect = false; 
+    public static String Question_Question;
+    public static String Question_Answer1;
+    public static String Question_Answer2;
+    public static String Question_Answer3;
+    public static String Question_Correct;
     
+
+    public static string conn;
+    public static IDbConnection dbconn;
     public void Start()
     {
+        conn = "URI=file:" + Application.dataPath + "/dbQuestions.s3db";
+        dbconn = (IDbConnection) new SqliteConnection(conn);
+        dbconn.Open();
+        IDbCommand getqn = dbconn.CreateCommand();
+        
+
+
         NumberofPlayers = MainMenu.NumPlayers;
         mainUI = GameObject.Find("Canvas");
         GameOverUI = GameObject.Find("GameOver");
@@ -63,16 +80,6 @@ public class GameControl : MonoBehaviour {
                 Player8 = GameObject.Find("Player8");
                 Player9 = GameObject.Find("Player9");
                 Player10 = GameObject.Find("Player10");  
-                // Player1.GetComponent<AudioListener>().enabled = false;
-                // Player2.GetComponent<AudioListener>().enabled = false;
-                // Player3.GetComponent<AudioListener>().enabled = false;
-                // Player4.GetComponent<AudioListener>().enabled = false;
-                // Player5.GetComponent<AudioListener>().enabled = false;
-                // Player6.GetComponent<AudioListener>().enabled = false;
-                // Player7.GetComponent<AudioListener>().enabled = false;
-                // Player8.GetComponent<AudioListener>().enabled = false;
-                // Player9.GetComponent<AudioListener>().enabled = false;
-                // Player10.GetComponent<AudioListener>().enabled = false;
                 Player3.SetActive(false);   
                 Player4.SetActive(false);
                 Player5.SetActive(false);
@@ -95,16 +102,6 @@ public class GameControl : MonoBehaviour {
                 Player8 = GameObject.Find("Player8");
                 Player9 = GameObject.Find("Player9");
                 Player10 = GameObject.Find("Player10");
-                // Player1.GetComponent<AudioListener>().enabled = false;
-                // Player2.GetComponent<AudioListener>().enabled = false;
-                // Player3.GetComponent<AudioListener>().enabled = false;
-                // Player4.GetComponent<AudioListener>().enabled = false;
-                // Player5.GetComponent<AudioListener>().enabled = false;
-                // Player6.GetComponent<AudioListener>().enabled = false;
-                // Player7.GetComponent<AudioListener>().enabled = false;
-                // Player8.GetComponent<AudioListener>().enabled = false;
-                // Player9.GetComponent<AudioListener>().enabled = false;
-                // Player10.GetComponent<AudioListener>().enabled = false;
                 Player4.SetActive(false);
                 Player5.SetActive(false);
                 Player6.SetActive(false);
@@ -126,16 +123,6 @@ public class GameControl : MonoBehaviour {
                 Player8 = GameObject.Find("Player8");
                 Player9 = GameObject.Find("Player9");
                 Player10 = GameObject.Find("Player10");
-                // Player1.GetComponent<AudioListener>().enabled = false;
-                // Player2.GetComponent<AudioListener>().enabled = false;
-                // Player3.GetComponent<AudioListener>().enabled = false;
-                // Player4.GetComponent<AudioListener>().enabled = false;
-                // Player5.GetComponent<AudioListener>().enabled = false;
-                // Player6.GetComponent<AudioListener>().enabled = false;
-                // Player7.GetComponent<AudioListener>().enabled = false;
-                // Player8.GetComponent<AudioListener>().enabled = false;
-                // Player9.GetComponent<AudioListener>().enabled = false;
-                // Player10.GetComponent<AudioListener>().enabled = false;
                 Player5.SetActive(false);
                 Player6.SetActive(false);
                 Player7.SetActive(false);
@@ -155,16 +142,6 @@ public class GameControl : MonoBehaviour {
                 Player8 = GameObject.Find("Player8");
                 Player9 = GameObject.Find("Player9");
                 Player10 = GameObject.Find("Player10");
-                // Player1.GetComponent<AudioListener>().enabled = false;
-                // Player2.GetComponent<AudioListener>().enabled = false;
-                // Player3.GetComponent<AudioListener>().enabled = false;
-                // Player4.GetComponent<AudioListener>().enabled = false;
-                // Player5.GetComponent<AudioListener>().enabled = false;
-                // Player6.GetComponent<AudioListener>().enabled = false;
-                // Player7.GetComponent<AudioListener>().enabled = false;
-                // Player8.GetComponent<AudioListener>().enabled = false;
-                // Player9.GetComponent<AudioListener>().enabled = false;
-                // Player10.GetComponent<AudioListener>().enabled = false;
                 Player6.SetActive(false);
                 Player7.SetActive(false);
                 Player8.SetActive(false);
@@ -189,10 +166,6 @@ public class GameControl : MonoBehaviour {
                 Player4.GetComponent<AudioListener>().enabled = false;
                 Player5.GetComponent<AudioListener>().enabled = false;
                 Player6.GetComponent<AudioListener>().enabled = false;
-                // Player7.GetComponent<AudioListener>().enabled = false;
-                // Player8.GetComponent<AudioListener>().enabled = false;
-                // Player9.GetComponent<AudioListener>().enabled = false;
-                // Player10.GetComponent<AudioListener>().enabled = false;
                 Player7.SetActive(false);
                 Player8.SetActive(false);
                 Player9.SetActive(false);
@@ -217,9 +190,6 @@ public class GameControl : MonoBehaviour {
                 Player5.GetComponent<AudioListener>().enabled = false;
                 Player6.GetComponent<AudioListener>().enabled = false;
                 Player7.GetComponent<AudioListener>().enabled = false;
-                // Player8.GetComponent<AudioListener>().enabled = false;
-                // Player9.GetComponent<AudioListener>().enabled = false;
-                // Player10.GetComponent<AudioListener>().enabled = false;
                 Player8.SetActive(false);
                 Player9.SetActive(false);
                 Player10.SetActive(false);
@@ -244,8 +214,6 @@ public class GameControl : MonoBehaviour {
                 Player6.GetComponent<AudioListener>().enabled = false;
                 Player7.GetComponent<AudioListener>().enabled = false;
                 Player8.GetComponent<AudioListener>().enabled = false;
-                // Player9.GetComponent<AudioListener>().enabled = false;
-                // Player10.GetComponent<AudioListener>().enabled = false;
                 Player9.SetActive(false);
                 Player10.SetActive(false);
             break;
@@ -270,7 +238,6 @@ public class GameControl : MonoBehaviour {
                 Player7.GetComponent<AudioListener>().enabled = false;
                 Player8.GetComponent<AudioListener>().enabled = false;
                 Player9.GetComponent<AudioListener>().enabled = false;
-                // Player10.GetComponent<AudioListener>().enabled = false;
                 Player10.SetActive(false);
             break;
             
@@ -831,13 +798,28 @@ public class GameControl : MonoBehaviour {
         Debug.Log("Moveplayer");
         switch(WhoMoves){
             case 1:
-
-
-
-
-
-
-
+                
+                string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
+                
+                IDbCommand dbcmd = dbconn.CreateCommand();
+                dbcmd.CommandText = getqn;
+                IDataReader reader = dbcmd.ExecuteReader();
+                while(reader.Read())
+                {
+                    int test = reader.GetInt32(0);
+                    Question_Question = reader.GetString(1);
+                    Question_Answer1 = reader.GetString(2);
+                    Question_Answer2 = reader.GetString(3);
+                    Question_Answer3 = reader.GetString(4);
+                    Question_Correct = reader.GetString(5);
+                    
+                }
+                    Debug.Log("Qn: " + Question_Question);
+                    Debug.Log("ans1: " + Question_Answer1);
+                    Debug.Log("ans2: " + Question_Answer2);
+                    Debug.Log("ans3: " + Question_Answer3);
+                    Debug.Log("Correct: " + Question_Correct);
+                    
 
 
                 if(QuestionCorrect){
@@ -848,6 +830,29 @@ public class GameControl : MonoBehaviour {
                 }
                 break;
             case 2:
+
+                string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
+                
+                IDbCommand dbcmd = dbconn.CreateCommand();
+                dbcmd.CommandText = getqn;
+                IDataReader reader = dbcmd.ExecuteReader();
+                while(reader.Read())
+                {
+                    int test = reader.GetInt32(0);
+                    Question_Question = reader.GetString(1);
+                    Question_Answer1 = reader.GetString(2);
+                    Question_Answer2 = reader.GetString(3);
+                    Question_Answer3 = reader.GetString(4);
+                    Question_Correct = reader.GetString(5);
+                    
+                }
+                    Debug.Log("Qn: " + Question_Question);
+                    Debug.Log("ans1: " + Question_Answer1);
+                    Debug.Log("ans2: " + Question_Answer2);
+                    Debug.Log("ans3: " + Question_Answer3);
+                    Debug.Log("Correct: " + Question_Correct);
+
+
                 if(QuestionCorrect){
                     Player2.GetComponent<FollowThePath>().moveAllowed = true;
                 }
@@ -856,6 +861,26 @@ public class GameControl : MonoBehaviour {
                 }
                 break;
             case 3:
+                string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
+                
+                IDbCommand dbcmd = dbconn.CreateCommand();
+                dbcmd.CommandText = getqn;
+                IDataReader reader = dbcmd.ExecuteReader();
+                while(reader.Read())
+                {
+                    int test = reader.GetInt32(0);
+                    Question_Question = reader.GetString(1);
+                    Question_Answer1 = reader.GetString(2);
+                    Question_Answer2 = reader.GetString(3);
+                    Question_Answer3 = reader.GetString(4);
+                    Question_Correct = reader.GetString(5);
+                    
+                }
+                    Debug.Log("Qn: " + Question_Question);
+                    Debug.Log("ans1: " + Question_Answer1);
+                    Debug.Log("ans2: " + Question_Answer2);
+                    Debug.Log("ans3: " + Question_Answer3);
+                    Debug.Log("Correct: " + Question_Correct);
                 if(QuestionCorrect){
                     Player3.GetComponent<FollowThePath>().moveAllowed = true;
                 }
@@ -864,6 +889,26 @@ public class GameControl : MonoBehaviour {
                 }
                 break;
             case 4:
+                string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
+                
+                IDbCommand dbcmd = dbconn.CreateCommand();
+                dbcmd.CommandText = getqn;
+                IDataReader reader = dbcmd.ExecuteReader();
+                while(reader.Read())
+                {
+                    int test = reader.GetInt32(0);
+                    Question_Question = reader.GetString(1);
+                    Question_Answer1 = reader.GetString(2);
+                    Question_Answer2 = reader.GetString(3);
+                    Question_Answer3 = reader.GetString(4);
+                    Question_Correct = reader.GetString(5);
+                    
+                }
+                    Debug.Log("Qn: " + Question_Question);
+                    Debug.Log("ans1: " + Question_Answer1);
+                    Debug.Log("ans2: " + Question_Answer2);
+                    Debug.Log("ans3: " + Question_Answer3);
+                    Debug.Log("Correct: " + Question_Correct);
                 if(QuestionCorrect){
                     Player4.GetComponent<FollowThePath>().moveAllowed = true;
                 }
@@ -872,6 +917,26 @@ public class GameControl : MonoBehaviour {
                 }
                 break;
             case 5:
+                string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
+                
+                IDbCommand dbcmd = dbconn.CreateCommand();
+                dbcmd.CommandText = getqn;
+                IDataReader reader = dbcmd.ExecuteReader();
+                while(reader.Read())
+                {
+                    int test = reader.GetInt32(0);
+                    Question_Question = reader.GetString(1);
+                    Question_Answer1 = reader.GetString(2);
+                    Question_Answer2 = reader.GetString(3);
+                    Question_Answer3 = reader.GetString(4);
+                    Question_Correct = reader.GetString(5);
+                    
+                }
+                    Debug.Log("Qn: " + Question_Question);
+                    Debug.Log("ans1: " + Question_Answer1);
+                    Debug.Log("ans2: " + Question_Answer2);
+                    Debug.Log("ans3: " + Question_Answer3);
+                    Debug.Log("Correct: " + Question_Correct);
                 if(QuestionCorrect){
                     Player5.GetComponent<FollowThePath>().moveAllowed = true;
                 }
@@ -880,6 +945,26 @@ public class GameControl : MonoBehaviour {
                 }
                 break;
             case 6:
+                string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
+                
+                IDbCommand dbcmd = dbconn.CreateCommand();
+                dbcmd.CommandText = getqn;
+                IDataReader reader = dbcmd.ExecuteReader();
+                while(reader.Read())
+                {
+                    int test = reader.GetInt32(0);
+                    Question_Question = reader.GetString(1);
+                    Question_Answer1 = reader.GetString(2);
+                    Question_Answer2 = reader.GetString(3);
+                    Question_Answer3 = reader.GetString(4);
+                    Question_Correct = reader.GetString(5);
+                    
+                }
+                    Debug.Log("Qn: " + Question_Question);
+                    Debug.Log("ans1: " + Question_Answer1);
+                    Debug.Log("ans2: " + Question_Answer2);
+                    Debug.Log("ans3: " + Question_Answer3);
+                    Debug.Log("Correct: " + Question_Correct);
                 if(QuestionCorrect){
                     Player6.GetComponent<FollowThePath>().moveAllowed = true;
                 }
@@ -888,6 +973,26 @@ public class GameControl : MonoBehaviour {
                 }
                 break;
             case 7:
+                string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
+                
+                IDbCommand dbcmd = dbconn.CreateCommand();
+                dbcmd.CommandText = getqn;
+                IDataReader reader = dbcmd.ExecuteReader();
+                while(reader.Read())
+                {
+                    int test = reader.GetInt32(0);
+                    Question_Question = reader.GetString(1);
+                    Question_Answer1 = reader.GetString(2);
+                    Question_Answer2 = reader.GetString(3);
+                    Question_Answer3 = reader.GetString(4);
+                    Question_Correct = reader.GetString(5);
+                    
+                }
+                    Debug.Log("Qn: " + Question_Question);
+                    Debug.Log("ans1: " + Question_Answer1);
+                    Debug.Log("ans2: " + Question_Answer2);
+                    Debug.Log("ans3: " + Question_Answer3);
+                    Debug.Log("Correct: " + Question_Correct);
                 if(QuestionCorrect){
                     Player7.GetComponent<FollowThePath>().moveAllowed = true;
                 }
@@ -896,6 +1001,26 @@ public class GameControl : MonoBehaviour {
                 }
                 break;
             case 8:
+                string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
+                
+                IDbCommand dbcmd = dbconn.CreateCommand();
+                dbcmd.CommandText = getqn;
+                IDataReader reader = dbcmd.ExecuteReader();
+                while(reader.Read())
+                {
+                    int test = reader.GetInt32(0);
+                    Question_Question = reader.GetString(1);
+                    Question_Answer1 = reader.GetString(2);
+                    Question_Answer2 = reader.GetString(3);
+                    Question_Answer3 = reader.GetString(4);
+                    Question_Correct = reader.GetString(5);
+                    
+                }
+                    Debug.Log("Qn: " + Question_Question);
+                    Debug.Log("ans1: " + Question_Answer1);
+                    Debug.Log("ans2: " + Question_Answer2);
+                    Debug.Log("ans3: " + Question_Answer3);
+                    Debug.Log("Correct: " + Question_Correct);
                 if(QuestionCorrect){
                     Player8.GetComponent<FollowThePath>().moveAllowed = true;
                 }
@@ -904,6 +1029,26 @@ public class GameControl : MonoBehaviour {
                 }
                 break;
             case 9:
+                string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
+                
+                IDbCommand dbcmd = dbconn.CreateCommand();
+                dbcmd.CommandText = getqn;
+                IDataReader reader = dbcmd.ExecuteReader();
+                while(reader.Read())
+                {
+                    int test = reader.GetInt32(0);
+                    Question_Question = reader.GetString(1);
+                    Question_Answer1 = reader.GetString(2);
+                    Question_Answer2 = reader.GetString(3);
+                    Question_Answer3 = reader.GetString(4);
+                    Question_Correct = reader.GetString(5);
+                    
+                }
+                    Debug.Log("Qn: " + Question_Question);
+                    Debug.Log("ans1: " + Question_Answer1);
+                    Debug.Log("ans2: " + Question_Answer2);
+                    Debug.Log("ans3: " + Question_Answer3);
+                    Debug.Log("Correct: " + Question_Correct);
                 if(QuestionCorrect){
                     Player9.GetComponent<FollowThePath>().moveAllowed = true;
                 }
@@ -912,6 +1057,26 @@ public class GameControl : MonoBehaviour {
                 }
                 break;
             case 10:
+                string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
+                
+                IDbCommand dbcmd = dbconn.CreateCommand();
+                dbcmd.CommandText = getqn;
+                IDataReader reader = dbcmd.ExecuteReader();
+                while(reader.Read())
+                {
+                    int test = reader.GetInt32(0);
+                    Question_Question = reader.GetString(1);
+                    Question_Answer1 = reader.GetString(2);
+                    Question_Answer2 = reader.GetString(3);
+                    Question_Answer3 = reader.GetString(4);
+                    Question_Correct = reader.GetString(5);
+                    
+                }
+                    Debug.Log("Qn: " + Question_Question);
+                    Debug.Log("ans1: " + Question_Answer1);
+                    Debug.Log("ans2: " + Question_Answer2);
+                    Debug.Log("ans3: " + Question_Answer3);
+                    Debug.Log("Correct: " + Question_Correct);
                 if(QuestionCorrect){
                     Player10.GetComponent<FollowThePath>().moveAllowed = true;
                 }

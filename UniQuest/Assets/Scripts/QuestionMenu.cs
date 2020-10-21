@@ -47,7 +47,9 @@ public class QuestionMenu : MonoBehaviour
 
     public void AddQuestion()
     {
+        
         mmCanvas = GameObject.Find("Canvas");
+        CurrentLetter = mmCanvas.transform.GetChild(5).GetChild(12).GetComponent<UnityEngine.UI.Text>().text;
         conn = "URI=file:" + Application.dataPath + "/dbQuestions.s3db";
         dbconn = (IDbConnection) new SqliteConnection(conn);
         dbconn.Open();
@@ -68,19 +70,17 @@ public class QuestionMenu : MonoBehaviour
         }
 
         string sqlQuery = "INSERT INTO questions ('Qn_Question', 'Qn_Answer_A', 'Qn_Answer_B', 'Qn_Answer_C', 'Qn_CorrectAnswer') VALUES ('" + Question + "', '" + Answera + "', '" + Answerb + "', '" + Answerc + "', '" + correctanswer + "')";
+        
 
         dbcmd.CommandText = sqlQuery;
         IDataReader reader = dbcmd.ExecuteReader();
              while (reader.Read())
                 {
-                    // int value = reader.GetString(0);
-                    // string name = reader.GetString(1);
-                    // int rand = reader.GetString(2);
-        
-                    // Debug.Log( "value= "+value+"  name ="+name+"  random ="+  rand);
+                   
                 }
             reader.Close();
             reader = null;
+            
         dbcmd.Dispose();
         dbcmd = null;
         dbconn.Close();
