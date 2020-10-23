@@ -15,7 +15,8 @@ public class MainMenu : MonoBehaviour
     public void Start()
     {
         mmCanvas = GameObject.Find("Canvas");
-        Debug.Log("Start");
+        //Debug.Log("Start");
+        Debug.Log("Start " + GetInstanceID(), this);
         mmCanvas.transform.GetChild(0).gameObject.SetActive(true);
         mmCanvas.transform.GetChild(1).gameObject.SetActive(false);
 
@@ -58,7 +59,7 @@ public class MainMenu : MonoBehaviour
     {
         if(NumPlayers < 10){
             NumPlayers++;
-            mmCanvas.transform.GetChild(2).GetChild(5).gameObject.GetComponent<UnityEngine.UI.Text>().text = NumPlayers.ToString();
+            mmCanvas.transform.GetChild(3).GetChild(5).gameObject.GetComponent<UnityEngine.UI.Text>().text = NumPlayers.ToString();
         }
     }
 
@@ -66,7 +67,7 @@ public class MainMenu : MonoBehaviour
     {
         if(NumPlayers > 2){
             NumPlayers--;
-            mmCanvas.transform.GetChild(2).GetChild(5).gameObject.GetComponent<UnityEngine.UI.Text>().text = NumPlayers.ToString();
+            mmCanvas.transform.GetChild(3).GetChild(5).gameObject.GetComponent<UnityEngine.UI.Text>().text = NumPlayers.ToString();
         }
     }
 
