@@ -8,7 +8,7 @@ using System.Data;
 
 public class QuestionMenu : MonoBehaviour
 {
-    public static GameObject mmCanvas;
+    public static GameObject mmCanvas, txtCurrentLetter;
     public static string CurrentLetter;
 
     public static string conn;
@@ -19,47 +19,69 @@ public class QuestionMenu : MonoBehaviour
     public static string correctanswer;
     public static IDbConnection dbconn;
 
-    public void ToggleLetterup()
+    public void Start()
     {
         mmCanvas = GameObject.Find("Canvas");
-        CurrentLetter = mmCanvas.transform.GetChild(5).GetChild(12).GetComponent<UnityEngine.UI.Text>().text;
+        txtCurrentLetter = GameObject.Find("CorrectAns");
+    }
+
+
+    public void ToggleLetterup()
+    {
+        CurrentLetter = txtCurrentLetter.GetComponent<UnityEngine.UI.Text>().text;
+
+        //mmCanvas = GameObject.Find("Canvas");
+        //CurrentLetter = mmCanvas.transform.GetChild(5).GetChild(12).GetComponent<UnityEngine.UI.Text>().text;
 
         if(CurrentLetter == "A"){
-            mmCanvas.transform.GetChild(5).GetChild(12).GetComponent<UnityEngine.UI.Text>().text = "B";
+            txtCurrentLetter.GetComponent<UnityEngine.UI.Text>().text = "B";
+            //mmCanvas.transform.GetChild(5).GetChild(12).GetComponent<UnityEngine.UI.Text>().text = "B";
         }
         else if(CurrentLetter == "B"){
-            mmCanvas.transform.GetChild(5).GetChild(12).GetComponent<UnityEngine.UI.Text>().text = "C";
+            txtCurrentLetter.GetComponent<UnityEngine.UI.Text>().text = "C";
+            //mmCanvas.transform.GetChild(5).GetChild(12).GetComponent<UnityEngine.UI.Text>().text = "C";
         }
     }
 
     public void ToggleLetterdown()
     {
-        mmCanvas = GameObject.Find("Canvas");
-        CurrentLetter = mmCanvas.transform.GetChild(5).GetChild(12).GetComponent<UnityEngine.UI.Text>().text;
+        CurrentLetter = txtCurrentLetter.GetComponent<UnityEngine.UI.Text>().text;
 
-        if(CurrentLetter == "C"){
-            mmCanvas.transform.GetChild(5).GetChild(12).GetComponent<UnityEngine.UI.Text>().text = "B";
+        //mmCanvas = GameObject.Find("Canvas");
+        //CurrentLetter = mmCanvas.transform.GetChild(5).GetChild(12).GetComponent<UnityEngine.UI.Text>().text;
+
+        if (CurrentLetter == "C"){
+            txtCurrentLetter.GetComponent<UnityEngine.UI.Text>().text = "B";
+            //mmCanvas.transform.GetChild(5).GetChild(12).GetComponent<UnityEngine.UI.Text>().text = "B";
         }
         else if(CurrentLetter == "B"){
-            mmCanvas.transform.GetChild(5).GetChild(12).GetComponent<UnityEngine.UI.Text>().text = "A";
+            txtCurrentLetter.GetComponent<UnityEngine.UI.Text>().text = "A";
+            //mmCanvas.transform.GetChild(5).GetChild(12).GetComponent<UnityEngine.UI.Text>().text = "A";
         }
     }
 
     public void AddQuestion()
     {
-        
-        mmCanvas = GameObject.Find("Canvas");
-        CurrentLetter = mmCanvas.transform.GetChild(5).GetChild(12).GetComponent<UnityEngine.UI.Text>().text;
+        CurrentLetter = txtCurrentLetter.GetComponent<UnityEngine.UI.Text>().text;
+        //mmCanvas = GameObject.Find("Canvas");
+        //CurrentLetter = mmCanvas.transform.GetChild(5).GetChild(12).GetComponent<UnityEngine.UI.Text>().text;
+
         conn = "URI=file:" + Application.dataPath + "/dbQuestions.s3db";
         dbconn = (IDbConnection) new SqliteConnection(conn);
         dbconn.Open();
         IDbCommand dbcmd = dbconn.CreateCommand();
 
+        Question = GameObject.Find("QuestionText").GetComponent<UnityEngine.UI.Text>().text;
+        Answera = GameObject.Find("OptionAText").GetComponent<UnityEngine.UI.Text>().text;
+        Answerb = GameObject.Find("OptionBText").GetComponent<UnityEngine.UI.Text>().text;
+        Answerc = GameObject.Find("OptionCText").GetComponent<UnityEngine.UI.Text>().text;
+        /*
         Question = mmCanvas.transform.GetChild(5).GetChild(8).GetChild(2).GetComponent<UnityEngine.UI.Text>().text;
         Answera = mmCanvas.transform.GetChild(5).GetChild(11).GetChild(2).GetComponent<UnityEngine.UI.Text>().text;
         Answerb = mmCanvas.transform.GetChild(5).GetChild(10).GetChild(2).GetComponent<UnityEngine.UI.Text>().text;
         Answerc = mmCanvas.transform.GetChild(5).GetChild(9).GetChild(2).GetComponent<UnityEngine.UI.Text>().text;
-        if(CurrentLetter == "A"){
+        */
+        if (CurrentLetter == "A"){
             correctanswer = Answera;
         }
         else if(CurrentLetter == "B"){
@@ -69,9 +91,10 @@ public class QuestionMenu : MonoBehaviour
             correctanswer = Answerc;
         }
 
-        string sqlQuery = "INSERT INTO questions ('Qn_Question', 'Qn_Answer_A', 'Qn_Answer_B', 'Qn_Answer_C', 'Qn_CorrectAnswer') VALUES ('" + Question + "', '" + Answera + "', '" + Answerb + "', '" + Answerc + "', '" + correctanswer + "')";
+        string sqlQuery = 
+            "INSERT INTO questions ('Qn_Question', 'Qn_Answer_A', 'Qn_Answer_B', 'Qn_Answer_C', 'Qn_CorrectAnswer') " +
+            "VALUES ('" + Question + "', '" + Answera + "', '" + Answerb + "', '" + Answerc + "', '" + correctanswer + "')";
         
-
         dbcmd.CommandText = sqlQuery;
         IDataReader reader = dbcmd.ExecuteReader();
              while (reader.Read())
