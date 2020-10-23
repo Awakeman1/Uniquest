@@ -202,7 +202,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1377976201}
+      - m_Target: {fileID: 672454213}
         m_MethodName: playercountplus
         m_Mode: 1
         m_Arguments:
@@ -259,7 +259,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 21342904}
-  - component: {fileID: 21342905}
   m_Layer: 5
   m_Name: NGMenu
   m_TagString: Untagged
@@ -293,18 +292,6 @@ RectTransform:
   m_AnchoredPosition: {x: -287.7999, y: -103.59999}
   m_SizeDelta: {x: 161.91791, y: 115.62033}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &21342905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 21342903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0905ef990e05f96439ba5fc00be615c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &22361870
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +373,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1377976201}
+      - m_Target: {fileID: 672454213}
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -593,7 +580,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1550922641}
+      - m_Target: {fileID: 672454214}
         m_MethodName: ToggleLetterup
         m_Mode: 1
         m_Arguments:
@@ -1030,7 +1017,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1377976201}
+      - m_Target: {fileID: 672454213}
         m_MethodName: Back
         m_Mode: 1
         m_Arguments:
@@ -1159,7 +1146,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1377976201}
+      - m_Target: {fileID: 0}
         m_MethodName: 
         m_Mode: 1
         m_Arguments:
@@ -1288,7 +1275,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1377976201}
+      - m_Target: {fileID: 672454213}
         m_MethodName: Back
         m_Mode: 1
         m_Arguments:
@@ -1514,6 +1501,8 @@ GameObject:
   - component: {fileID: 672454211}
   - component: {fileID: 672454210}
   - component: {fileID: 672454209}
+  - component: {fileID: 672454213}
+  - component: {fileID: 672454214}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1607,6 +1596,30 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &672454213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672454208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0905ef990e05f96439ba5fc00be615c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &672454214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672454208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b37d2b19baa75747891ef6d0dc5015d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &692399304
 GameObject:
   m_ObjectHideFlags: 0
@@ -1688,7 +1701,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1377976201}
+      - m_Target: {fileID: 672454213}
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -1895,7 +1908,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1377976199}
+      - m_Target: {fileID: 672454208}
         m_MethodName: 
         m_Mode: 1
         m_Arguments:
@@ -1955,7 +1968,7 @@ GameObject:
   - component: {fileID: 875838922}
   - component: {fileID: 875838921}
   m_Layer: 5
-  m_Name: Text
+  m_Name: QuestionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2387,7 +2400,7 @@ GameObject:
   - component: {fileID: 1050233028}
   - component: {fileID: 1050233027}
   m_Layer: 5
-  m_Name: Text
+  m_Name: OptionBText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2534,7 +2547,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1377976201}
+      - m_Target: {fileID: 672454213}
         m_MethodName: OptionMenu
         m_Mode: 1
         m_Arguments:
@@ -2594,7 +2607,7 @@ GameObject:
   - component: {fileID: 1149059985}
   - component: {fileID: 1149059984}
   m_Layer: 5
-  m_Name: Text
+  m_Name: OptionAText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2819,7 +2832,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1377976201}
+      - m_Target: {fileID: 672454213}
         m_MethodName: RMQuestion
         m_Mode: 1
         m_Arguments:
@@ -2948,7 +2961,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1550922641}
+      - m_Target: {fileID: 672454214}
         m_MethodName: ToggleLetterdown
         m_Mode: 1
         m_Arguments:
@@ -3077,7 +3090,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1550922641}
+      - m_Target: {fileID: 672454214}
         m_MethodName: AddQuestion
         m_Mode: 1
         m_Arguments:
@@ -3134,7 +3147,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1297041228}
-  - component: {fileID: 1297041229}
   m_Layer: 5
   m_Name: OptionsMenu
   m_TagString: Untagged
@@ -3164,18 +3176,6 @@ RectTransform:
   m_AnchoredPosition: {x: -287.8, y: -103.6}
   m_SizeDelta: {x: 161.91791, y: 115.62033}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1297041229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1297041227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0905ef990e05f96439ba5fc00be615c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1316690852
 GameObject:
   m_ObjectHideFlags: 0
@@ -3188,7 +3188,7 @@ GameObject:
   - component: {fileID: 1316690855}
   - component: {fileID: 1316690854}
   m_Layer: 5
-  m_Name: Text
+  m_Name: OptionCText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3341,7 +3341,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1377976200}
-  - component: {fileID: 1377976201}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -3371,18 +3370,6 @@ RectTransform:
   m_AnchoredPosition: {x: -287.8, y: -103.6}
   m_SizeDelta: {x: 161.91791, y: 115.62033}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1377976201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1377976199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0905ef990e05f96439ba5fc00be615c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1401808002
 GameObject:
   m_ObjectHideFlags: 0
@@ -3466,7 +3453,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1516152241}
-  - component: {fileID: 1516152242}
   m_Layer: 5
   m_Name: RmQuestionMenu
   m_TagString: Untagged
@@ -3496,18 +3482,6 @@ RectTransform:
   m_AnchoredPosition: {x: -287.80002, y: -103.600006}
   m_SizeDelta: {x: 161.91791, y: 115.62033}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1516152242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1516152240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0905ef990e05f96439ba5fc00be615c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1531182248
 GameObject:
   m_ObjectHideFlags: 0
@@ -3657,8 +3631,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1550922639}
-  - component: {fileID: 1550922640}
-  - component: {fileID: 1550922641}
   m_Layer: 5
   m_Name: AddQuestionMenu
   m_TagString: Untagged
@@ -3699,30 +3671,6 @@ RectTransform:
   m_AnchoredPosition: {x: -287.80002, y: -103.600006}
   m_SizeDelta: {x: 161.91791, y: 115.62033}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1550922640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1550922638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0905ef990e05f96439ba5fc00be615c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1550922641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1550922638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b37d2b19baa75747891ef6d0dc5015d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1619118802
 GameObject:
   m_ObjectHideFlags: 0
@@ -4093,7 +4041,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1377976201}
+      - m_Target: {fileID: 672454213}
         m_MethodName: Back
         m_Mode: 1
         m_Arguments:
@@ -4222,7 +4170,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1377976201}
+      - m_Target: {fileID: 672454213}
         m_MethodName: NewGame
         m_Mode: 1
         m_Arguments:
@@ -4429,7 +4377,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1377976201}
+      - m_Target: {fileID: 672454213}
         m_MethodName: Back
         m_Mode: 1
         m_Arguments:
@@ -4714,7 +4662,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1377976201}
+      - m_Target: {fileID: 672454213}
         m_MethodName: AddQuestion
         m_Mode: 1
         m_Arguments:
@@ -4843,7 +4791,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1377976201}
+      - m_Target: {fileID: 672454213}
         m_MethodName: playercountminus
         m_Mode: 1
         m_Arguments:
