@@ -29,17 +29,12 @@ public class QuestionMenu : MonoBehaviour
     public void ToggleLetterup()
     {
         CurrentLetter = txtCurrentLetter.GetComponent<UnityEngine.UI.Text>().text;
-
-        //mmCanvas = GameObject.Find("Canvas");
-        //CurrentLetter = mmCanvas.transform.GetChild(5).GetChild(12).GetComponent<UnityEngine.UI.Text>().text;
-
+        
         if(CurrentLetter == "A"){
             txtCurrentLetter.GetComponent<UnityEngine.UI.Text>().text = "B";
-            //mmCanvas.transform.GetChild(5).GetChild(12).GetComponent<UnityEngine.UI.Text>().text = "B";
         }
         else if(CurrentLetter == "B"){
             txtCurrentLetter.GetComponent<UnityEngine.UI.Text>().text = "C";
-            //mmCanvas.transform.GetChild(5).GetChild(12).GetComponent<UnityEngine.UI.Text>().text = "C";
         }
     }
 
@@ -47,24 +42,17 @@ public class QuestionMenu : MonoBehaviour
     {
         CurrentLetter = txtCurrentLetter.GetComponent<UnityEngine.UI.Text>().text;
 
-        //mmCanvas = GameObject.Find("Canvas");
-        //CurrentLetter = mmCanvas.transform.GetChild(5).GetChild(12).GetComponent<UnityEngine.UI.Text>().text;
-
         if (CurrentLetter == "C"){
             txtCurrentLetter.GetComponent<UnityEngine.UI.Text>().text = "B";
-            //mmCanvas.transform.GetChild(5).GetChild(12).GetComponent<UnityEngine.UI.Text>().text = "B";
         }
         else if(CurrentLetter == "B"){
             txtCurrentLetter.GetComponent<UnityEngine.UI.Text>().text = "A";
-            //mmCanvas.transform.GetChild(5).GetChild(12).GetComponent<UnityEngine.UI.Text>().text = "A";
         }
     }
 
     public void AddQuestion()
     {
         CurrentLetter = txtCurrentLetter.GetComponent<UnityEngine.UI.Text>().text;
-        //mmCanvas = GameObject.Find("Canvas");
-        //CurrentLetter = mmCanvas.transform.GetChild(5).GetChild(12).GetComponent<UnityEngine.UI.Text>().text;
 
         conn = "URI=file:" + Application.dataPath + "/dbQuestions.s3db";
         dbconn = (IDbConnection) new SqliteConnection(conn);
@@ -75,12 +63,7 @@ public class QuestionMenu : MonoBehaviour
         Answera = GameObject.Find("OptionAText").GetComponent<UnityEngine.UI.Text>().text;
         Answerb = GameObject.Find("OptionBText").GetComponent<UnityEngine.UI.Text>().text;
         Answerc = GameObject.Find("OptionCText").GetComponent<UnityEngine.UI.Text>().text;
-        /*
-        Question = mmCanvas.transform.GetChild(5).GetChild(8).GetChild(2).GetComponent<UnityEngine.UI.Text>().text;
-        Answera = mmCanvas.transform.GetChild(5).GetChild(11).GetChild(2).GetComponent<UnityEngine.UI.Text>().text;
-        Answerb = mmCanvas.transform.GetChild(5).GetChild(10).GetChild(2).GetComponent<UnityEngine.UI.Text>().text;
-        Answerc = mmCanvas.transform.GetChild(5).GetChild(9).GetChild(2).GetComponent<UnityEngine.UI.Text>().text;
-        */
+
         if (CurrentLetter == "A"){
             correctanswer = Answera;
         }

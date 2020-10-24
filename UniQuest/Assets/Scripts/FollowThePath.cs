@@ -5,7 +5,7 @@ public class FollowThePath : MonoBehaviour {
     public Transform[] waypoints;
 
     [SerializeField]
-    private float moveSpeed = 2f;
+    public float moveSpeed = 2f;
 
     [HideInInspector]
     public int waypointIndex = 0;
