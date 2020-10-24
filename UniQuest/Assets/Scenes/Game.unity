@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -546,7 +546,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6e1448edcf4fd054f832955314f3b757, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4cfc8a9db3c9e244fb83d6ca3158d808, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -706,7 +706,7 @@ RectTransform:
   m_GameObject: {fileID: 257479061}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.0905, z: 1}
   m_Children:
   - {fileID: 663049700}
   m_Father: {fileID: 409478894}
@@ -2608,7 +2608,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6e1448edcf4fd054f832955314f3b757, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4cfc8a9db3c9e244fb83d6ca3158d808, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4235,7 +4235,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6e1448edcf4fd054f832955314f3b757, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4cfc8a9db3c9e244fb83d6ca3158d808, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4961,7 +4961,7 @@ RectTransform:
   m_GameObject: {fileID: 2033466785}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 12.952268, y: 8.9369135, z: 8.9369135}
+  m_LocalScale: {x: 11.15131, y: 9.133103, z: 7.694274}
   m_Children:
   - {fileID: 310854032}
   - {fileID: 1797910010}
