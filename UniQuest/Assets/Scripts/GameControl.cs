@@ -21,7 +21,7 @@ public class GameControl : MonoBehaviour {
     public static int diceSideThrown = 0;   
     public static int WhosTurn = 1;
 
-    public static GameObject mainUI, diceUI, GameOverUI, QuestionUI;
+    public static GameObject mainUI, diceUI, GameOverUI, QuestionUI, Wrong, Right;
 
     public static TextMeshProUGUI QuestionText, ans1Text,ans2Text, ans3Text;
 
@@ -48,6 +48,8 @@ public class GameControl : MonoBehaviour {
         diceUI = GameObject.Find("DiceButton");
         GameOverUI = GameObject.Find("GameOverPanel");
         QuestionUI = GameObject.Find("QuestionPanel");
+        Wrong = GameObject.Find("Wrong");
+        Right = GameObject.Find("Right");
 
         QuestionText = GameObject.Find("QuestionText").GetComponent<TextMeshProUGUI>();
         ans1Text = GameObject.Find("OptionAText").GetComponent<TextMeshProUGUI>();
@@ -56,6 +58,8 @@ public class GameControl : MonoBehaviour {
 
         GameOverUI.SetActive(false);
         QuestionUI.SetActive(false);
+        Wrong.SetActive(false);
+        Right.SetActive(false);
 
         Player1 = GameObject.Find("Player1");
         Player2 = GameObject.Find("Player2");
@@ -212,18 +216,34 @@ public class GameControl : MonoBehaviour {
         {
             QuestionCorrect = false;
         }
+      
         QuestionUI.SetActive(false);
         gamePaused = false;
 
         if (QuestionCorrect)
         {
-            activePlayer.GetComponent<FollowThePath>().moveAllowed = true;
-            QuestionCorrect = false;
+            StartCoroutine(RightAns());
         }
         else
         {
-            NextTurn();
+            StartCoroutine(WrongAns());
         }
         
+    }
+    IEnumerator RightAns()
+    {
+        Right.SetActive(true);
+        yield return new WaitForSeconds(1);
+        Right.SetActive(false);
+        activePlayer.GetComponent<FollowThePath>().moveAllowed = true;
+        QuestionCorrect = false;
+    }
+
+    IEnumerator WrongAns()
+    {
+        Wrong.SetActive(true);
+        yield return new WaitForSeconds(1);
+        Wrong.SetActive(false);
+        NextTurn();
     }
 }
