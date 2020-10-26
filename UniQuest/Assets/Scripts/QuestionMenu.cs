@@ -52,6 +52,7 @@ public class QuestionMenu : MonoBehaviour
 
     public void AddQuestion()
     {
+        txtCurrentLetter = GameObject.Find("CorrectAns");
         CurrentLetter = txtCurrentLetter.GetComponent<UnityEngine.UI.Text>().text;
 
         conn = "URI=file:" + Application.dataPath + "/dbQuestions.s3db";
@@ -74,28 +75,32 @@ public class QuestionMenu : MonoBehaviour
             correctanswer = Answerc;
         }
 
-        string sqlQuery = 
-            "INSERT INTO questions ('Qn_Question', 'Qn_Answer_A', 'Qn_Answer_B', 'Qn_Answer_C', 'Qn_CorrectAnswer') " +
-            "VALUES ('" + Question + "', '" + Answera + "', '" + Answerb + "', '" + Answerc + "', '" + correctanswer + "')";
-        
-        dbcmd.CommandText = sqlQuery;
-        IDataReader reader = dbcmd.ExecuteReader();
-             while (reader.Read())
+        try{
+                string sqlQuery = 
+                    "INSERT INTO questions ('Qn_Question', 'Qn_Answer_A', 'Qn_Answer_B', 'Qn_Answer_C', 'Qn_CorrectAnswer') " +
+                    "VALUES ('" + Question + "', '" + Answera + "', '" + Answerb + "', '" + Answerc + "', '" + correctanswer + "')";
+                
+                dbcmd.CommandText = sqlQuery;
+                IDataReader reader = dbcmd.ExecuteReader();
+                    while (reader.Read())
+                        {
+                        
+                        }
+                    reader.Close();
+                    reader = null;
+                    Debug.Log("Added Successfully - I think...");
+                    
+                dbcmd.Dispose();
+                dbcmd = null;
+                dbconn.Close();
+                dbconn = null;
                 {
-                   
+                    
                 }
-            reader.Close();
-            reader = null;
-            
-        dbcmd.Dispose();
-        dbcmd = null;
-        dbconn.Close();
-        dbconn = null;
-        {
-            
+        }
+        catch(SqliteException e){
+        Debug.Log("Syntax error found: " + e);
         }
     }
-
-
 
 }
