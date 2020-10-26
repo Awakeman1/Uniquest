@@ -28,25 +28,25 @@ public class QuestionMenu : MonoBehaviour
 
     public void ToggleLetterup()
     {
-        CurrentLetter = txtCurrentLetter.GetComponent<UnityEngine.UI.Text>().text;
+        txtCurrentLetter = GameObject.Find("CorrectAns");
         
-        if(CurrentLetter == "A"){
-            txtCurrentLetter.GetComponent<UnityEngine.UI.Text>().text = "B";
+        if(txtCurrentLetter.gameObject.GetComponent<UnityEngine.UI.Text>().text == "A"){
+            txtCurrentLetter.gameObject.GetComponent<UnityEngine.UI.Text>().text = "B";
         }
-        else if(CurrentLetter == "B"){
-            txtCurrentLetter.GetComponent<UnityEngine.UI.Text>().text = "C";
+        else if(txtCurrentLetter.gameObject.GetComponent<UnityEngine.UI.Text>().text == "B"){
+            txtCurrentLetter.gameObject.GetComponent<UnityEngine.UI.Text>().text = "C";
         }
     }
 
     public void ToggleLetterdown()
     {
-        CurrentLetter = txtCurrentLetter.GetComponent<UnityEngine.UI.Text>().text;
-
-        if (CurrentLetter == "C"){
-            txtCurrentLetter.GetComponent<UnityEngine.UI.Text>().text = "B";
+        txtCurrentLetter = GameObject.Find("CorrectAns");
+        
+        if(txtCurrentLetter.gameObject.GetComponent<UnityEngine.UI.Text>().text == "C"){
+            txtCurrentLetter.gameObject.GetComponent<UnityEngine.UI.Text>().text = "B";
         }
-        else if(CurrentLetter == "B"){
-            txtCurrentLetter.GetComponent<UnityEngine.UI.Text>().text = "A";
+        else if(txtCurrentLetter.gameObject.GetComponent<UnityEngine.UI.Text>().text == "B"){
+            txtCurrentLetter.gameObject.GetComponent<UnityEngine.UI.Text>().text = "A";
         }
     }
 
