@@ -8,7 +8,7 @@ public class Dice : MonoBehaviour {
 
     private Sprite ds1, ds2, ds3, ds4, ds5, ds6;
     public List<Sprite> DiceSides = new List<Sprite>();
-    public static int numberofquestions = 10;
+    public static int numberofquestions = 71;
     public static int QuestionID;
     
     private bool coroutineAllowed = true;
