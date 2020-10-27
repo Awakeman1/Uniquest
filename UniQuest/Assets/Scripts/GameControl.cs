@@ -173,8 +173,8 @@ public class GameControl : MonoBehaviour {
     {
         Debug.Log("AskQuestion");
 
-        string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
-
+       // string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
+        string getqn = "SELECT * FROM questions WHERE ROWID = '" + Dice.QuestionID + "';";
         IDbCommand dbcmd = dbconn.CreateCommand();
         dbcmd.CommandText = getqn;
         IDataReader reader = dbcmd.ExecuteReader();
