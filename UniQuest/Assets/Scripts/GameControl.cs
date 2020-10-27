@@ -11,30 +11,15 @@ using TMPro;
 
 public class GameControl : MonoBehaviour {
 
-    private static GameObject Player1, Player2, Player3, Player4, Player5, Player6, Player7, Player8, Player9, Player10;
+    private static GameObject Player1, Player2, Player3, Player4, Player5, Player6, Player7, Player8, Player9, Player10, activePlayer, Mcamera, mainUI, diceUI, GameOverUI, QuestionUI, Wrong, Right, ans1, ans2, ans3;
     private static ArrayList players;
-    private static GameObject activePlayer;
     private static Dictionary<GameObject, int> playerPositions;
-
-    public int NumberofPlayers;
-    private static GameObject Mcamera;
-    public static int diceSideThrown = 0;   
-    public static int WhosTurn = 1;
-
-    public static GameObject mainUI, diceUI, GameOverUI, QuestionUI, Wrong, Right;
-
+    public static int diceSideThrown = 0, NumberofPlayers, WhosTurn = 1;   
     public static TextMeshProUGUI QuestionText, ans1Text,ans2Text, ans3Text;
-
     public static bool QuestionCorrect = false, gamePaused = false; 
-    public static String Question_Question;
-    public static String Question_Answer1;
-    public static String Question_Answer2;
-    public static String Question_Answer3;
-    public static String Question_Correct;
-
-    public static string conn;
+    public static String Question_Question, Question_Answer1, Question_Answer2, Question_Answer3, Question_Correct, Question_Type, conn ;
     public static IDbConnection dbconn;
-
+    public static ParticleSystem Rollagain1, Rollagain2, Rollagain3, Rollagain4, In1, In2, Out1, Out2;
 
     public void Start()
     {
@@ -43,7 +28,16 @@ public class GameControl : MonoBehaviour {
         dbconn.Open();
         IDbCommand getqn = dbconn.CreateCommand();
         
-        
+        Rollagain1 = GameObject.Find("Rollagain1").GetComponent<ParticleSystem>();
+        Rollagain2 = GameObject.Find("Rollagain2").GetComponent<ParticleSystem>();
+        Rollagain3 = GameObject.Find("Rollagain3").GetComponent<ParticleSystem>();
+        Rollagain4 = GameObject.Find("Rollagain4").GetComponent<ParticleSystem>();
+        In1 = GameObject.Find("In1").GetComponent<ParticleSystem>();
+        In2 = GameObject.Find("In2").GetComponent<ParticleSystem>();
+        Out1 = GameObject.Find("Out1").GetComponent<ParticleSystem>();
+        Out2 = GameObject.Find("Out2").GetComponent<ParticleSystem>();
+
+
         mainUI = GameObject.Find("Canvas");
         diceUI = GameObject.Find("DiceButton");
         GameOverUI = GameObject.Find("GameOverPanel");
@@ -52,6 +46,10 @@ public class GameControl : MonoBehaviour {
         Right = GameObject.Find("Right");
 
         QuestionText = GameObject.Find("QuestionText").GetComponent<TextMeshProUGUI>();
+        ans1 = GameObject.Find("OptionA");
+        ans2 = GameObject.Find("OptionB");
+        ans3 = GameObject.Find("OptionC");
+
         ans1Text = GameObject.Find("OptionAText").GetComponent<TextMeshProUGUI>();
         ans2Text = GameObject.Find("OptionBText").GetComponent<TextMeshProUGUI>();
         ans3Text = GameObject.Find("OptionCText").GetComponent<TextMeshProUGUI>();
@@ -119,38 +117,61 @@ public class GameControl : MonoBehaviour {
                     switch (activePlayer.GetComponent<FollowThePath>().waypointIndex)
                     {
                         case 4:
+                            Debug.Log(activePlayer.name + " goes again");
+                            Rollagain1.Play();
+                            break;
                         case 13:
+                            Debug.Log(activePlayer.name + " goes again");
+                            Rollagain2.Play();
+                            break;
                         case 17:
+                            Debug.Log(activePlayer.name + " goes again");
+                            Rollagain3.Play();
+                            break;
                         case 23:
                             Debug.Log(activePlayer.name + " goes again");
+                            Rollagain4.Play();
                             break;
                         case 7:
                             Debug.Log(activePlayer.name + " went in portal");
                             activePlayer.GetComponent<FollowThePath>().moveSpeed = 3f;
                             diceSideThrown = 5;
                             activePlayer.GetComponent<FollowThePath>().moveAllowed = true;
+                            In1.Play();
+                            
                             break;
                         case 25:
                             Debug.Log(activePlayer.name + " went in portal");
                             activePlayer.GetComponent<FollowThePath>().moveSpeed = 3f;
                             diceSideThrown = 4;
                             activePlayer.GetComponent<FollowThePath>().moveAllowed = true;
+                            In2.Play();
                             break;
                         case 12:
+                            Debug.Log(activePlayer.name + " exited portal");
+                            activePlayer.GetComponent<FollowThePath>().moveSpeed = 2f;Out1.Play();
+                            Out1.Play();
+                            NextTurn();
+                            break;
                         case 29:
                             Debug.Log(activePlayer.name + " exited portal");
-                            activePlayer.GetComponent<FollowThePath>().moveSpeed = 1f;
+                            activePlayer.GetComponent<FollowThePath>().moveSpeed = 2f;Out1.Play();
+                            Out2.Play();
                             NextTurn();
-                            break;
-                        case 34:
-                            String winner = activePlayer.name;
-                            Debug.Log("Game Over, " + winner + " Wins");
-                            diceUI.SetActive(false);
-                            GameOverUI.SetActive(true);
-                            GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = winner;
                             break;
                         default:
-                            NextTurn();
+                            if(activePlayer.GetComponent<FollowThePath>().waypointIndex >= 34)
+                            {
+                                String winner = activePlayer.name;
+                                Debug.Log("Game Over, " + winner + " Wins");
+                                diceUI.SetActive(false);
+                                GameOverUI.SetActive(true);
+                                GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = winner;
+                            }
+                            else
+                            {
+                                NextTurn();
+                            }
                             break;
 
                     }
@@ -173,7 +194,6 @@ public class GameControl : MonoBehaviour {
     {
         Debug.Log("AskQuestion");
 
-       // string getqn = "SELECT * FROM questions WHERE Qn_Number = '" + Dice.QuestionID + "';";
         string getqn = "SELECT * FROM questions WHERE ROWID = '" + Dice.QuestionID + "';";
         IDbCommand dbcmd = dbconn.CreateCommand();
         dbcmd.CommandText = getqn;
@@ -186,7 +206,7 @@ public class GameControl : MonoBehaviour {
             Question_Answer2 = reader.GetString(3);
             Question_Answer3 = reader.GetString(4);
             Question_Correct = reader.GetString(5);
-
+            Question_Type = reader.GetString(6);
         }
 
         Debug.Log("Qn: " + Question_Question);
@@ -196,12 +216,35 @@ public class GameControl : MonoBehaviour {
         Debug.Log("CorrectAns: " + Question_Correct);
 
         gamePaused = true;
-        QuestionUI.SetActive(true);
         
-        QuestionText.SetText(Question_Question);
-        ans1Text.SetText(Question_Answer1);
-        ans2Text.SetText(Question_Answer2);
-        ans3Text.SetText(Question_Answer3);
+        if(Question_Type == "mc")
+        {
+            Debug.Log("mc");
+            QuestionText.SetText(Question_Question);
+            ans1Text.SetText(Question_Answer1);
+            ans2Text.SetText(Question_Answer2);
+            ans3Text.SetText(Question_Answer3);
+            ans3.SetActive(true);
+            QuestionUI.SetActive(true);
+        }
+        else if(Question_Type == "tf")
+        {
+            Debug.Log("tf");
+            QuestionText.SetText(Question_Question);
+            ans1Text.SetText(Question_Answer1);
+            ans2Text.SetText(Question_Answer2);
+            ans3.SetActive(false);
+            QuestionUI.SetActive(true);
+        }
+        else if(Question_Type == "yn")
+        {
+            Debug.Log("yn");
+            QuestionText.SetText(Question_Question);
+            ans1Text.SetText(Question_Answer1);
+            ans2Text.SetText(Question_Answer2);
+            ans3.SetActive(false);
+            QuestionUI.SetActive(true);
+        }
 
     }
 

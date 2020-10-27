@@ -3,20 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Mono.Data.Sqlite;
+using System.Data;
 
 public class MainMenu : MonoBehaviour
 {
     public static GameObject mmCanvas;
     public static int NumPlayers = 2;
 
-    private GameObject mmBackgroundImg, mmBackgroundBlank;
-    private GameObject menuMain, menuNewGame, menuOptions, menuAddQuestion, menuRmQuestion;
-    private GameObject txtNumPlayers;
+    public GameObject mmBackgroundImg, mmBackgroundBlank;
+    public GameObject menuMain, menuNewGame, menuOptions, menuAddQuestion, menuRmQuestion;
+    public GameObject txtNumPlayers;
 
+    public static IDbConnection dbconn, dbconn2;
+    public static string conn, tempqn;
+    public static int numberofqns;
+    public GameObject rmquestionitem, Content;
 
     public void Start()
     {
         Debug.Log("Start " + GetInstanceID(), this);
+        rmquestionitem = GameObject.Find("qn");
+        Content = GameObject.Find("Content");
 
         mmCanvas = GameObject.Find("Canvas");
         mmBackgroundImg = GameObject.Find("Background");
@@ -103,10 +111,73 @@ public class MainMenu : MonoBehaviour
     public void RMQuestion()
     {
         Debug.Log("Rm Question");
+        string question = "test";
+        
 
         ClearScreen();
         mmBackgroundBlank.gameObject.SetActive(true);
         menuRmQuestion.gameObject.SetActive(true);
+
+
+        conn = "URI=file:" + Application.dataPath + "/dbQuestions.s3db";
+        dbconn = (IDbConnection) new SqliteConnection(conn);
+        dbconn.Open();
+        IDbCommand dbcmd = dbconn.CreateCommand();
+
+        string getnumqns = "SELECT COUNT(*) FROM questions;";
+        
+        dbcmd.CommandText = getnumqns;
+                IDataReader reader = dbcmd.ExecuteReader();
+                    while (reader.Read())
+                        {
+                            numberofqns = reader.GetInt32(0);
+                        }
+                    reader.Close();
+                    reader = null;
+                    
+                dbcmd.Dispose();
+                dbcmd = null;
+                dbconn.Close();
+                dbconn = null;
+                {
+                    
+                }
+
+        
+
+
+        for(int i = 1; i < numberofqns; i++){
+            string getqn = "SELECT Qn_Question FROM questions WHERE ROWID = '" + i + "';";
+            dbconn2 = (IDbConnection) new SqliteConnection(conn);
+            dbconn2.Open();
+            IDbCommand dbcmd2 = dbconn2.CreateCommand();
+            dbcmd2.CommandText = getqn;
+                 IDataReader reader2 = dbcmd2.ExecuteReader();
+                    while (reader2.Read())
+                        {
+                            tempqn = reader2.GetString(0);
+                        }
+                    reader2.Close();
+                    reader2 = null;
+                    
+                dbcmd2.Dispose();
+                dbcmd2 = null;
+                dbconn2.Close();
+                dbconn2 = null;
+                {
+                    
+                }
+
+
+
+
+            GameObject a = Instantiate(rmquestionitem, new Vector3(transform.position.x,transform.position.y, transform.position.z) , Quaternion.identity);
+            a.transform.SetParent(Content.gameObject.transform, false);
+            a.gameObject.GetComponent<UnityEngine.UI.Text>().text = tempqn;
+        }
+        rmquestionitem.gameObject.SetActive(false);
+
+
 
     }
 

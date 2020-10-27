@@ -5,24 +5,21 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Mono.Data.Sqlite;
 using System.Data;
+using UnityEditor;
 
 public class QuestionMenu : MonoBehaviour
 {
-    public static GameObject mmCanvas, txtCurrentLetter;
-    public static string CurrentLetter;
-
-    public static string conn;
-    public static string Question;
-    public static string Answera;
-    public static string Answerb;
-    public static string Answerc;
-    public static string correctanswer;
+    public static GameObject mmCanvas, txtCurrentLetter, rmquestionitem;
+    public static string CurrentLetter, conn, Question, Answera, Answerb, Answerc, correctanswer, questiontype;
     public static IDbConnection dbconn;
+    public static int numberofqns;
+    
 
     public void Start()
     {
         mmCanvas = GameObject.Find("Canvas");
         txtCurrentLetter = GameObject.Find("CorrectAns");
+        rmquestionitem = GameObject.Find("qn");
     }
 
 
@@ -77,8 +74,8 @@ public class QuestionMenu : MonoBehaviour
 
         try{
                 string sqlQuery = 
-                    "INSERT INTO questions ('Qn_Question', 'Qn_Answer_A', 'Qn_Answer_B', 'Qn_Answer_C', 'Qn_CorrectAnswer') " +
-                    "VALUES ('" + Question + "', '" + Answera + "', '" + Answerb + "', '" + Answerc + "', '" + correctanswer + "')";
+                    "INSERT INTO questions ('Qn_Question', 'Qn_Answer_A', 'Qn_Answer_B', 'Qn_Answer_C', 'Qn_CorrectAnswer', 'Qn_Type') " +
+                    "VALUES ('" + Question + "', '" + Answera + "', '" + Answerb + "', '" + Answerc + "', '" + correctanswer + "', '" + questiontype + "')";
                 
                 dbcmd.CommandText = sqlQuery;
                 IDataReader reader = dbcmd.ExecuteReader();
@@ -97,10 +94,23 @@ public class QuestionMenu : MonoBehaviour
                 {
                     
                 }
+
+                if(EditorUtility.DisplayDialog("Success!",  "Your new question has sucessfully beena added to the database.",  "Ok"))
+                print("Pressed Yes.");
+                
         }
         catch(SqliteException e){
-        Debug.Log("Syntax error found: " + e);
+            Debug.Log("Syntax error found: " + e);
+            if(EditorUtility.DisplayDialog("Fail!",  "There was an error adding your question. Ensure that there are no apostrophes or quotation marks.",  "Ok"))
+                print("Pressed Yes.");
         }
+    }
+
+
+    public void rmqn()
+    {
+    
+     
     }
 
 }
