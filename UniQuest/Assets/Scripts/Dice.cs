@@ -68,7 +68,7 @@ public class Dice : MonoBehaviour {
             {
                 randomDiceSide = Random.Range(0, 6);
                 GameObject.Find("DiceButton").gameObject.GetComponent<Image>().sprite = DiceSides[randomDiceSide];     
-                yield return new WaitForSeconds(0.12f);
+                yield return new WaitForSeconds(0.02f);
             }
             GameControl.diceSideThrown = randomDiceSide + 1;
             if(GameControl.WhosTurn > MainMenu.NumPlayers){
