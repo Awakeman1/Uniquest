@@ -71,11 +71,42 @@ public class QuestionMenu : MonoBehaviour
         else if(CurrentLetter == "C"){
             correctanswer = Answerc;
         }
+        
+        if(Answerc == ""){
+            try{
+                    string sqlQuery = "INSERT INTO questions ('Qn_Question', 'Qn_Answer_A', 'Qn_Answer_B', 'Qn_Answer_C', 'Qn_CorrectAnswer', 'Qn_Type') VALUES ('"+ Question + "', '"+ Answera + "', '" + Answerb + "', '" + Answerc + "', '" + correctanswer + "', 'yn')";
+                    
+                    dbcmd.CommandText = sqlQuery;
+                    IDataReader reader = dbcmd.ExecuteReader();
+                        while (reader.Read())
+                            {
+                            
+                            }
+                        reader.Close();
+                        reader = null;
+                        Debug.Log("Added Successfully - I think...");
+                        
+                    dbcmd.Dispose();
+                    dbcmd = null;
+                    dbconn.Close();
+                    dbconn = null;
+                    {
+                        
+                    }
 
-        try{
-                string sqlQuery = 
-                    "INSERT INTO questions ('Qn_Question', 'Qn_Answer_A', 'Qn_Answer_B', 'Qn_Answer_C', 'Qn_CorrectAnswer', 'Qn_Type') " +
-                    "VALUES ('" + Question + "', '" + Answera + "', '" + Answerb + "', '" + Answerc + "', '" + correctanswer + "', '" + questiontype + "')";
+                    if(EditorUtility.DisplayDialog("Success!",  "Your question has been added to the database.",  "Ok"))
+                    print("Pressed Yes.");
+                    
+            }
+            catch(SqliteException e){
+                Debug.Log("Syntax error found: " + e);
+                if(EditorUtility.DisplayDialog("Fail!",  "There was an error adding your question. Ensure that there are no apostrophes or quotation marks.",  "Ok"))
+                    print("Pressed Yes.");
+            }
+        }
+        else{
+             try{
+                string sqlQuery = "INSERT INTO questions ('Qn_Question', 'Qn_Answer_A', 'Qn_Answer_B', 'Qn_Answer_C', 'Qn_CorrectAnswer', 'Qn_Type') VALUES ('"+ Question + "', '"+ Answera + "', '" + Answerb + "', '" + Answerc + "', '" + correctanswer + "', 'mc')";
                 
                 dbcmd.CommandText = sqlQuery;
                 IDataReader reader = dbcmd.ExecuteReader();
@@ -95,7 +126,7 @@ public class QuestionMenu : MonoBehaviour
                     
                 }
 
-                if(EditorUtility.DisplayDialog("Success!",  "Your new question has sucessfully beena added to the database.",  "Ok"))
+                if(EditorUtility.DisplayDialog("Success!",  "Your question has been added to the database.",  "Ok"))
                 print("Pressed Yes.");
                 
         }
@@ -104,13 +135,9 @@ public class QuestionMenu : MonoBehaviour
             if(EditorUtility.DisplayDialog("Fail!",  "There was an error adding your question. Ensure that there are no apostrophes or quotation marks.",  "Ok"))
                 print("Pressed Yes.");
         }
-    }
+        }
 
-
-    public void rmqn()
-    {
-    
-     
+        
     }
 
 }
