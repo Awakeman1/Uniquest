@@ -20,9 +20,12 @@ public class GameControl : MonoBehaviour {
     public static String Question_Question, Question_Answer1, Question_Answer2, Question_Answer3, Question_Correct, Question_Type, conn ;
     public static IDbConnection dbconn;
     public static ParticleSystem Rollagain1, Rollagain2, Rollagain3, Rollagain4, In1, In2, Out1, Out2;
+    
+    
 
     public void Start()
     {
+        Mcamera = GameObject.Find("MainCamera");
         conn = "URI=file:" + Application.dataPath + "/dbQuestions.s3db";
         dbconn = (IDbConnection) new SqliteConnection(conn);
         dbconn.Open();
@@ -101,6 +104,7 @@ public class GameControl : MonoBehaviour {
         Mcamera = GameObject.Find("MainCamera");
         Mcamera.SetActive(true);
         Mcamera.GetComponent<AudioListener>().enabled = false;
+        Mcamera.transform.SetParent(Player1.gameObject.transform, false);
         
     }
 
@@ -220,43 +224,54 @@ public class GameControl : MonoBehaviour {
     private static void NextTurn()
     {
         WhosTurn++;
-        switch(WhosTurn)
-        {
-            case 1:
-            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Yellow";
-            break;
-            case 2:
-            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Red";
-            break;
-            case 3:
-            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Purple";
-            break;
-            case 4:
-            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Light Pink";
-            break;
-            case 5:
-            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Orange";
-            break;
-            case 6:
-            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Hot Pink";
-            break;
-            case 7:
-            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Green";
-            break;
-            case 8:
-            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Dark Blue";
-            break;
-            case 9:
-            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Brown";
-            break;
-            case 10:
-            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Light Blue";
-            break;
-        }
         if (WhosTurn > players.Count)
         {
             WhosTurn = 1;
         }
+        switch(WhosTurn)
+        {
+            case 1:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Yellow";
+            Mcamera.transform.SetParent(Player1.gameObject.transform, false);
+            break;
+            case 2:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Red";
+            Mcamera.transform.SetParent(Player2.gameObject.transform, false);
+            break;
+            case 3:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Purple";
+            Mcamera.transform.SetParent(Player3.gameObject.transform, false);
+            break;
+            case 4:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Light Pink";
+            Mcamera.transform.SetParent(Player4.gameObject.transform, false);
+            break;
+            case 5:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Orange";
+            Mcamera.transform.SetParent(Player5.gameObject.transform, false);
+            break;
+            case 6:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Hot Pink";
+            Mcamera.transform.SetParent(Player6.gameObject.transform, false);
+            break;
+            case 7:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Green";
+            Mcamera.transform.SetParent(Player7.gameObject.transform, false);
+            break;
+            case 8:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Dark Blue";
+            Mcamera.transform.SetParent(Player8.gameObject.transform, false);
+            break;
+            case 9:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Brown";
+            Mcamera.transform.SetParent(Player9.gameObject.transform, false);
+            break;
+            case 10:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Light Blue";
+            Mcamera.transform.SetParent(Player10.gameObject.transform, false);
+            break;
+        }
+        
 
         switch(WhosTurn)
         {
