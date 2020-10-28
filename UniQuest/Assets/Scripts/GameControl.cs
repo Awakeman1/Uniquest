@@ -11,7 +11,7 @@ using TMPro;
 
 public class GameControl : MonoBehaviour {
 
-    private static GameObject Player1, Player2, Player3, Player4, Player5, Player6, Player7, Player8, Player9, Player10, activePlayer, Mcamera, mainUI, diceUI, GameOverUI, QuestionUI, Wrong, Right, ans1, ans2, ans3;
+    private static GameObject Player1, Player2, Player3, Player4, Player5, Player6, Player7, Player8, Player9, Player10, activePlayer, Mcamera, mainUI, diceUI, GameOverUI, QuestionUI, Wrong, Right, ans1, ans2, ans3, currentplayertext;
     private static ArrayList players;
     private static Dictionary<GameObject, int> playerPositions;
     public static int diceSideThrown = 0, NumberofPlayers, WhosTurn = 1;   
@@ -37,6 +37,8 @@ public class GameControl : MonoBehaviour {
         Out1 = GameObject.Find("Out1").GetComponent<ParticleSystem>();
         Out2 = GameObject.Find("Out2").GetComponent<ParticleSystem>();
 
+        currentplayertext = GameObject.Find("CurrentPlayerText");
+        currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Yellow";
 
         mainUI = GameObject.Find("Canvas");
         diceUI = GameObject.Find("DiceButton");
@@ -163,6 +165,40 @@ public class GameControl : MonoBehaviour {
                             if(activePlayer.GetComponent<FollowThePath>().waypointIndex >= 34)
                             {
                                 String winner = activePlayer.name;
+                                switch (winner)
+                                {
+                                    case "Player1":
+                                    GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Yellow";
+                                    break;
+                                    case "Player2":
+                                    GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Red";
+                                    break;
+                                    case "Player3":
+                                    GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Purple";
+                                    break;
+                                    case "Player4":
+                                    GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Light Pink";
+                                    break;
+                                    case "Player5":
+                                    GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Orange";
+                                    break;
+                                    case "Player6":
+                                    GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Hot Pink";
+                                    break;
+                                    case "Player7":
+                                    GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Green";
+                                    break;
+                                    case "Player8":
+                                    GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Dark Blue";
+                                    break;
+                                    case "Player9":
+                                    GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Brown";
+                                    break;
+                                    case "Player10":
+                                    GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Light Blue";
+                                    break;
+                                }
+                                
                                 Debug.Log("Game Over, " + winner + " Wins");
                                 diceUI.SetActive(false);
                                 GameOverUI.SetActive(true);
@@ -184,9 +220,76 @@ public class GameControl : MonoBehaviour {
     private static void NextTurn()
     {
         WhosTurn++;
+        switch(WhosTurn)
+        {
+            case 1:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Yellow";
+            break;
+            case 2:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Red";
+            break;
+            case 3:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Purple";
+            break;
+            case 4:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Light Pink";
+            break;
+            case 5:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Orange";
+            break;
+            case 6:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Hot Pink";
+            break;
+            case 7:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Green";
+            break;
+            case 8:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Dark Blue";
+            break;
+            case 9:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Brown";
+            break;
+            case 10:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Light Blue";
+            break;
+        }
         if (WhosTurn > players.Count)
         {
             WhosTurn = 1;
+        }
+
+        switch(WhosTurn)
+        {
+            case 1:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Yellow";
+            break;
+            case 2:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Red";
+            break;
+            case 3:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Purple";
+            break;
+            case 4:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Light Pink";
+            break;
+            case 5:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Orange";
+            break;
+            case 6:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Hot Pink";
+            break;
+            case 7:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Green";
+            break;
+            case 8:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Dark Blue";
+            break;
+            case 9:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Brown";
+            break;
+            case 10:
+            currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Light Blue";
+            break;
         }
     }
     
