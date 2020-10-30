@@ -49,6 +49,9 @@ public class QuestionMenu : MonoBehaviour
 
     public void AddQuestion()
     {
+        int number;
+
+        
         txtCurrentLetter = GameObject.Find("CorrectAns");
         CurrentLetter = txtCurrentLetter.GetComponent<UnityEngine.UI.Text>().text;
 
@@ -72,9 +75,47 @@ public class QuestionMenu : MonoBehaviour
             correctanswer = Answerc;
         }
         
-        if(Answerc == ""){
-            try{
-                    string sqlQuery = "INSERT INTO questions ('Qn_Question', 'Qn_Answer_A', 'Qn_Answer_B', 'Qn_Answer_C', 'Qn_CorrectAnswer', 'Qn_Type') VALUES ('"+ Question + "', '"+ Answera + "', '" + Answerb + "', '" + Answerc + "', '" + correctanswer + "', 'yn')";
+        if(int.TryParse(Question, out number) || int.TryParse(Answera, out number) || int.TryParse(Answerb, out number) || int.TryParse(Answerc, out number)){
+            Debug.Log("Found int instead of String. Please fix.");
+            if(EditorUtility.DisplayDialog("Fail!",  "A number was detected. Please change it like the following: Replace '1' with 'one'",  "Ok"))
+                print("Pressed Yes.");
+        }
+        else{
+            if(Answerc == ""){
+                try{
+                        string sqlQuery = "INSERT INTO questions ('Qn_Question', 'Qn_Answer_A', 'Qn_Answer_B', 'Qn_Answer_C', 'Qn_CorrectAnswer', 'Qn_Type') VALUES ('"+ Question + "', '"+ Answera + "', '" + Answerb + "', '" + Answerc + "', '" + correctanswer + "', 'yn')";
+                        
+                        dbcmd.CommandText = sqlQuery;
+                        IDataReader reader = dbcmd.ExecuteReader();
+                            while (reader.Read())
+                                {
+                                
+                                }
+                            reader.Close();
+                            reader = null;
+                            Debug.Log("Added Successfully - I think...");
+                            
+                        dbcmd.Dispose();
+                        dbcmd = null;
+                        dbconn.Close();
+                        dbconn = null;
+                        {
+                            
+                        }
+
+                        if(EditorUtility.DisplayDialog("Success!",  "Your question has been added to the database.",  "Ok"))
+                        print("Pressed Yes.");
+                        
+                }
+                catch(SqliteException e){
+                    Debug.Log("Syntax error found: " + e);
+                    if(EditorUtility.DisplayDialog("Fail!",  "There was an error adding your question. Ensure that there are no apostrophes or quotation marks.",  "Ok"))
+                        print("Pressed Yes.");
+                }
+            }
+            else{
+                try{
+                    string sqlQuery = "INSERT INTO questions ('Qn_Question', 'Qn_Answer_A', 'Qn_Answer_B', 'Qn_Answer_C', 'Qn_CorrectAnswer', 'Qn_Type') VALUES ('"+ Question + "', '"+ Answera + "', '" + Answerb + "', '" + Answerc + "', '" + correctanswer + "', 'mc')";
                     
                     dbcmd.CommandText = sqlQuery;
                     IDataReader reader = dbcmd.ExecuteReader();
@@ -103,40 +144,8 @@ public class QuestionMenu : MonoBehaviour
                 if(EditorUtility.DisplayDialog("Fail!",  "There was an error adding your question. Ensure that there are no apostrophes or quotation marks.",  "Ok"))
                     print("Pressed Yes.");
             }
+            }
         }
-        else{
-             try{
-                string sqlQuery = "INSERT INTO questions ('Qn_Question', 'Qn_Answer_A', 'Qn_Answer_B', 'Qn_Answer_C', 'Qn_CorrectAnswer', 'Qn_Type') VALUES ('"+ Question + "', '"+ Answera + "', '" + Answerb + "', '" + Answerc + "', '" + correctanswer + "', 'mc')";
-                
-                dbcmd.CommandText = sqlQuery;
-                IDataReader reader = dbcmd.ExecuteReader();
-                    while (reader.Read())
-                        {
-                        
-                        }
-                    reader.Close();
-                    reader = null;
-                    Debug.Log("Added Successfully - I think...");
-                    
-                dbcmd.Dispose();
-                dbcmd = null;
-                dbconn.Close();
-                dbconn = null;
-                {
-                    
-                }
-
-                if(EditorUtility.DisplayDialog("Success!",  "Your question has been added to the database.",  "Ok"))
-                print("Pressed Yes.");
-                
-        }
-        catch(SqliteException e){
-            Debug.Log("Syntax error found: " + e);
-            if(EditorUtility.DisplayDialog("Fail!",  "There was an error adding your question. Ensure that there are no apostrophes or quotation marks.",  "Ok"))
-                print("Pressed Yes.");
-        }
-        }
-
         
     }
 
