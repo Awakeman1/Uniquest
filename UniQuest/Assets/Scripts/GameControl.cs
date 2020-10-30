@@ -15,6 +15,7 @@ public class GameControl : MonoBehaviour {
     private static ArrayList players;
     private static Dictionary<GameObject, int> playerPositions;
     public static int diceSideThrown = 0, NumberofPlayers, WhosTurn = 1;   
+    
     public static TextMeshProUGUI QuestionText, ans1Text,ans2Text, ans3Text;
     public static bool QuestionCorrect = false, gamePaused = false; 
     public static String Question_Question, Question_Answer1, Question_Answer2, Question_Answer3, Question_Correct, Question_Type, conn ;
@@ -307,10 +308,14 @@ public class GameControl : MonoBehaviour {
             break;
         }
     }
+
+   
+
     
     public static void AskQuestion()
     {
         Debug.Log("AskQuestion");
+        
 
         string getqn = "SELECT * FROM questions WHERE ROWID = '" + Dice.QuestionID + "';";
         IDbCommand dbcmd = dbconn.CreateCommand();

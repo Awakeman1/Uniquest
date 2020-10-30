@@ -76,6 +76,7 @@ public class Dice : MonoBehaviour {
             }
             Debug.Log(GameControl.WhosTurn);
             QuestionID = Random.Range(1, numberofquestions);
+            
             yield return new WaitForSeconds(1);
             GameControl.AskQuestion();
             coroutineAllowed = true;
