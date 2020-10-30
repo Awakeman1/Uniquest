@@ -15,6 +15,9 @@ public class SkipQuestion : MonoBehaviour
     {
         Debug.Log("Skipped");
         Dice.QuestionID++;
+        if(Dice.QuestionID >= Dice.numberofquestions){
+            Dice.QuestionID = 1;
+        }
         GameControl.AskQuestion();
     }
 

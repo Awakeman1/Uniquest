@@ -11,7 +11,7 @@ using TMPro;
 
 public class GameControl : MonoBehaviour {
 
-    private static GameObject Player1, Player2, Player3, Player4, Player5, Player6, Player7, Player8, Player9, Player10, activePlayer, Mcamera, mainUI, diceUI, GameOverUI, QuestionUI, Wrong, Right, ans1, ans2, ans3, currentplayertext;
+    private static GameObject expectedans, Player1, Player2, Player3, Player4, Player5, Player6, Player7, Player8, Player9, Player10, activePlayer, Mcamera, mainUI, diceUI, GameOverUI, QuestionUI, Wrong, Right, ans1, ans2, ans3, currentplayertext;
     private static ArrayList players;
     private static Dictionary<GameObject, int> playerPositions;
     public static int diceSideThrown = 0, NumberofPlayers, WhosTurn = 1;   
@@ -40,6 +40,8 @@ public class GameControl : MonoBehaviour {
         In2 = GameObject.Find("In2").GetComponent<ParticleSystem>();
         Out1 = GameObject.Find("Out1").GetComponent<ParticleSystem>();
         Out2 = GameObject.Find("Out2").GetComponent<ParticleSystem>();
+
+        expectedans = GameObject.Find("expectedans");
 
         currentplayertext = GameObject.Find("CurrentPlayerText");
         currentplayertext.GetComponent<UnityEngine.UI.Text>().text = "Current Player is: Yellow";
@@ -407,8 +409,9 @@ public class GameControl : MonoBehaviour {
 
     IEnumerator WrongAns()
     {
+        expectedans.GetComponent<UnityEngine.UI.Text>().text = Question_Correct;
         Wrong.SetActive(true);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         Wrong.SetActive(false);
         NextTurn();
     }
