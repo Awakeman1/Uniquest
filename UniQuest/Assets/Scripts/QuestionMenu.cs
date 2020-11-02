@@ -47,6 +47,11 @@ public class QuestionMenu : MonoBehaviour
         }
     }
 
+    public void ReloadLevel(){
+              SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+              
+     }
+
     public void AddQuestion()
     {
         int number;
@@ -103,9 +108,9 @@ public class QuestionMenu : MonoBehaviour
                             
                         }
 
-                        if(EditorUtility.DisplayDialog("Success!",  "Your question has been added to the database.",  "Ok"))
+                        if(EditorUtility.DisplayDialog("Success!",  "Your question has been added to the database. You will now be returned to the main menu.",  "Ok"))
                         print("Pressed Yes.");
-                        
+                        ReloadLevel();    
                 }
                 catch(SqliteException e){
                     Debug.Log("Syntax error found: " + e);
@@ -135,8 +140,9 @@ public class QuestionMenu : MonoBehaviour
                         
                     }
 
-                    if(EditorUtility.DisplayDialog("Success!",  "Your question has been added to the database.",  "Ok"))
+                    if(EditorUtility.DisplayDialog("Success!",  "Your question has been added to the database. You will now be returned to the main menu.",  "Ok"))
                     print("Pressed Yes.");
+                    ReloadLevel();
                     
             }
             catch(SqliteException e){

@@ -325,7 +325,6 @@ public class GameControl : MonoBehaviour {
         IDataReader reader = dbcmd.ExecuteReader();
         while (reader.Read())
         {
-            int test = reader.GetInt32(0);
             Question_Question = reader.GetString(1);
             Question_Answer1 = reader.GetString(2);
             Question_Answer2 = reader.GetString(3);

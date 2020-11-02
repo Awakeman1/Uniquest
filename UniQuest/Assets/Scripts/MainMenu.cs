@@ -108,8 +108,11 @@ public class MainMenu : MonoBehaviour
         menuAddQuestion.gameObject.SetActive(true);
     }
 
+
+
     public void RMQuestion()
     {
+       
         Debug.Log("Rm Question");
         string question = "test";
         
@@ -146,7 +149,7 @@ public class MainMenu : MonoBehaviour
         
 
 
-        for(int i = 1; i < numberofqns; i++){
+        for(int i = 1; i <= numberofqns; i++){
             string getqn = "SELECT Qn_Question FROM questions WHERE ROWID = '" + i + "';";
             dbconn2 = (IDbConnection) new SqliteConnection(conn);
             dbconn2.Open();
@@ -168,9 +171,7 @@ public class MainMenu : MonoBehaviour
                     
                 }
 
-
-
-
+            
             GameObject a = Instantiate(rmquestionitem, new Vector3(transform.position.x,transform.position.y, transform.position.z) , Quaternion.identity);
             a.transform.SetParent(Content.gameObject.transform, false);
             a.gameObject.GetComponent<UnityEngine.UI.Text>().text = tempqn;
