@@ -35,7 +35,7 @@ public class Dice : MonoBehaviour {
             numberofquestions = reader.GetInt32(0);
         }
 
-        Debug.Log("number of qns: " + numberofquestions);
+        Debug.Log("number of qns from dcie: " + numberofquestions);
         ds1 = Resources.Load<Sprite>("DiceSides/s1");
         ds2 = Resources.Load<Sprite>("DiceSides/s2");
         ds3 = Resources.Load<Sprite>("DiceSides/s3");
@@ -76,6 +76,7 @@ public class Dice : MonoBehaviour {
             }
             Debug.Log(GameControl.WhosTurn);
             QuestionID = Random.Range(1, numberofquestions);
+            Debug.Log("QID: " + QuestionID);
             
             yield return new WaitForSeconds(1);
             GameControl.AskQuestion();

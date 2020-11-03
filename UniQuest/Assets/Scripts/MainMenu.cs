@@ -108,21 +108,8 @@ public class MainMenu : MonoBehaviour
         menuAddQuestion.gameObject.SetActive(true);
     }
 
-
-
-    public void RMQuestion()
-    {
-       
-        Debug.Log("Rm Question");
-        string question = "test";
-        
-
-        ClearScreen();
-        mmBackgroundBlank.gameObject.SetActive(true);
-        menuRmQuestion.gameObject.SetActive(true);
-
-
-        conn = "URI=file:" + Application.dataPath + "/dbQuestions.s3db";
+    public void countqns(){
+         conn = "URI=file:" + Application.dataPath + "/dbQuestions.s3db";
         dbconn = (IDbConnection) new SqliteConnection(conn);
         dbconn.Open();
         IDbCommand dbcmd = dbconn.CreateCommand();
@@ -147,10 +134,32 @@ public class MainMenu : MonoBehaviour
                 }
 
         
+        Debug.Log("Getting " + numberofqns + " from the db");
+    }
+
+    public void RMQuestion()
+    {
+       
+        Debug.Log("Rm Question");
+        
+
+        ClearScreen();
+        mmBackgroundBlank.gameObject.SetActive(true);
+        menuRmQuestion.gameObject.SetActive(true);
 
 
-        for(int i = 1; i <= numberofqns; i++){
+       
+
+        // RemoveQn.reindex();
+        countqns();
+    
+        
+        string prevqn = "";
+
+        for(int i = 1; i < 250;){
             string getqn = "SELECT Qn_Question FROM questions WHERE ROWID = '" + i + "';";
+           
+
             dbconn2 = (IDbConnection) new SqliteConnection(conn);
             dbconn2.Open();
             IDbCommand dbcmd2 = dbconn2.CreateCommand();
@@ -171,10 +180,17 @@ public class MainMenu : MonoBehaviour
                     
                 }
 
-            
+            if(tempqn != prevqn){
             GameObject a = Instantiate(rmquestionitem, new Vector3(transform.position.x,transform.position.y, transform.position.z) , Quaternion.identity);
             a.transform.SetParent(Content.gameObject.transform, false);
             a.gameObject.GetComponent<UnityEngine.UI.Text>().text = tempqn;
+            prevqn = tempqn;
+                i++;
+            }
+            else{
+                i++;
+            }
+
         }
         rmquestionitem.gameObject.SetActive(false);
 
