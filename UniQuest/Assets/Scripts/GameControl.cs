@@ -118,7 +118,50 @@ public class GameControl : MonoBehaviour {
             activePlayer = (GameObject)players[WhosTurn - 1];
             if (activePlayer.GetComponent<FollowThePath>().moveAllowed == true)
             {
-                if (activePlayer.GetComponent<FollowThePath>().waypointIndex > playerPositions[activePlayer] + diceSideThrown)
+                if (activePlayer.GetComponent<FollowThePath>().waypointIndex > 34)
+                {
+                    activePlayer.GetComponent<FollowThePath>().moveAllowed = false;
+                    String winner = activePlayer.name;
+                    gamePaused = true;
+                    Debug.Log("Game Over, " + winner + " Wins");
+                    diceUI.SetActive(false);
+                    GameOverUI.SetActive(true);
+                    switch (winner)
+                    {
+                        case "Player1":
+                            GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Yellow";
+                            break;
+                        case "Player2":
+                            GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Red";
+                            break;
+                        case "Player3":
+                            GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Purple";
+                            break;
+                        case "Player4":
+                            GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Light Pink";
+                            break;
+                        case "Player5":
+                            GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Orange";
+                            break;
+                        case "Player6":
+                            GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Hot Pink";
+                            break;
+                        case "Player7":
+                            GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Green";
+                            break;
+                        case "Player8":
+                            GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Dark Blue";
+                            break;
+                        case "Player9":
+                            GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Brown";
+                            break;
+                        case "Player10":
+                            GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Light Blue";
+                            break;
+                    }
+                                        
+                }
+                else if (activePlayer.GetComponent<FollowThePath>().waypointIndex > playerPositions[activePlayer] + diceSideThrown)
                 {
                     activePlayer.GetComponent<FollowThePath>().moveAllowed = false;
                     playerPositions[activePlayer] = activePlayer.GetComponent<FollowThePath>().waypointIndex - 1;
@@ -169,53 +212,9 @@ public class GameControl : MonoBehaviour {
                             NextTurn();
                             break;
                         default:
-                            if(activePlayer.GetComponent<FollowThePath>().waypointIndex >= 34)
-                            {
-                                String winner = activePlayer.name;
-                                switch (winner)
-                                {
-                                    case "Player1":
-                                    GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Yellow";
-                                    break;
-                                    case "Player2":
-                                    GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Red";
-                                    break;
-                                    case "Player3":
-                                    GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Purple";
-                                    break;
-                                    case "Player4":
-                                    GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Light Pink";
-                                    break;
-                                    case "Player5":
-                                    GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Orange";
-                                    break;
-                                    case "Player6":
-                                    GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Hot Pink";
-                                    break;
-                                    case "Player7":
-                                    GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Green";
-                                    break;
-                                    case "Player8":
-                                    GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Dark Blue";
-                                    break;
-                                    case "Player9":
-                                    GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Brown";
-                                    break;
-                                    case "Player10":
-                                    GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Light Blue";
-                                    break;
-                                }
-                                
-                                Debug.Log("Game Over, " + winner + " Wins");
-                                diceUI.SetActive(false);
-                                GameOverUI.SetActive(true);
-                                GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = winner;
-                            }
-                            else
-                            {
-                                NextTurn();
-                            }
+                            NextTurn();
                             break;
+                            
 
                     }
                 }
