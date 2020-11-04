@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mono.Data.Sqlite;
 using System.Data;
-using UnityEditor;
+// using UnityEditor;
 using UnityEngine.SceneManagement;
 
 public class RemoveQn : MonoBehaviour
@@ -54,22 +54,22 @@ public class RemoveQn : MonoBehaviour
                                 {
                                     
                                 }
-                        if(EditorUtility.DisplayDialog("Success!",  "Your question has been removed. You will now return to the main menu.",  "Ok"))
-                        print("Pressed Yes.");
+                        // if(EditorUtility.DisplayDialog("Success!",  "Your question has been removed. You will now return to the main menu.",  "Ok"))
+                        // print("Pressed Yes.");
                         ReloadLevel();
                         
                 
             }
             catch(SqliteException e){
                 Debug.Log("Syntax error found: " + e);
-                if(EditorUtility.DisplayDialog("Fail!",  "There was an error removing your question.",  "Ok"))
-                        print("Pressed Yes.");
+                // if(EditorUtility.DisplayDialog("Fail!",  "There was an error removing your question.",  "Ok"))
+                //         print("Pressed Yes.");
             }
 
         }
         else{
-            if(EditorUtility.DisplayDialog("Fail!",  "Please select an item to remove.",  "Ok"))
-                        print("Pressed Yes.");
+            // if(EditorUtility.DisplayDialog("Fail!",  "Please select an item to remove.",  "Ok"))
+            //             print("Pressed Yes.");
         }
     }
 
@@ -77,9 +77,9 @@ public class RemoveQn : MonoBehaviour
     public void remove(GameObject sender)
     {
         Debug.Log("There are " + content.transform.childCount + " kiddies");        
-        for(int a = 1; a < content.transform.childCount; a++) { //Loops through every child of object
+        for(int a = 1; a < content.transform.childCount; a++) {
                     
-                    Transform child = content.transform.GetChild(a); //Gets the current child
+                    Transform child = content.transform.GetChild(a);
                     child.GetComponent<UnityEngine.UI.Text>().color = Color.black;
         }
 
@@ -127,14 +127,14 @@ public class RemoveQn : MonoBehaviour
             }
             catch(SqliteException e){
                 Debug.Log("Syntax error found: " + e);
-                if(EditorUtility.DisplayDialog("Fail!",  "There was an error removing your question.",  "Ok"))
-                        print("Pressed Yes.");
+                // if(EditorUtility.DisplayDialog("Fail!",  "There was an error removing your question.",  "Ok"))
+                //         print("Pressed Yes.");
             }
 
         }
         else{
-            if(EditorUtility.DisplayDialog("Fail!",  "Please select an item to remove.",  "Ok"))
-                        print("Pressed Yes.");
+            // if(EditorUtility.DisplayDialog("Fail!",  "Please select an item to remove.",  "Ok"))
+            //             print("Pressed Yes.");
         }
     }
 }

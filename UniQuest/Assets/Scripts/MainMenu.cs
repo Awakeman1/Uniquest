@@ -110,6 +110,7 @@ public class MainMenu : MonoBehaviour
 
     public void countqns(){
          conn = "URI=file:" + Application.dataPath + "/dbQuestions.s3db";
+         Debug.Log("db location: " + conn);
         dbconn = (IDbConnection) new SqliteConnection(conn);
         dbconn.Open();
         IDbCommand dbcmd = dbconn.CreateCommand();

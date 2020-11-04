@@ -22,15 +22,19 @@ public class GameControl : MonoBehaviour {
     public static IDbConnection dbconn;
     public static ParticleSystem Rollagain1, Rollagain2, Rollagain3, Rollagain4, In1, In2, Out1, Out2;
     
-    
+    public void Awake(){
+        Debug.Log("GameControl Awake");
+    }
 
     public void Start()
     {
+        Debug.Log("GameControl Onstart()");
         Mcamera = GameObject.Find("MainCamera");
         conn = "URI=file:" + Application.dataPath + "/dbQuestions.s3db";
         dbconn = (IDbConnection) new SqliteConnection(conn);
         dbconn.Open();
         IDbCommand getqn = dbconn.CreateCommand();
+        
         
         Rollagain1 = GameObject.Find("Rollagain1").GetComponent<ParticleSystem>();
         Rollagain2 = GameObject.Find("Rollagain2").GetComponent<ParticleSystem>();
@@ -77,7 +81,8 @@ public class GameControl : MonoBehaviour {
         Player8 = GameObject.Find("Player8");
         Player9 = GameObject.Find("Player9");
         Player10 = GameObject.Find("Player10");
-
+        Debug.Log("Test: should have added all the elements if this is running");
+        
         players = new ArrayList()
         {Player1, Player2, Player3, Player4, Player5, Player6, Player7, Player8, Player9, Player10};
 
@@ -87,6 +92,7 @@ public class GameControl : MonoBehaviour {
             GameObject player = (GameObject) players[i-1];
             player.SetActive(false);
             players.Remove(player);
+            Debug.Log("Players: " + players);
         }
 
         playerPositions = new Dictionary<GameObject, int>();

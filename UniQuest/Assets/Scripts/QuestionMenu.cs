@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Mono.Data.Sqlite;
 using System.Data;
-using UnityEditor;
+// using UnityEditor;
 
 public class QuestionMenu : MonoBehaviour
 {
@@ -82,8 +82,8 @@ public class QuestionMenu : MonoBehaviour
         
         if(int.TryParse(Question, out number) || int.TryParse(Answera, out number) || int.TryParse(Answerb, out number) || int.TryParse(Answerc, out number)){
             Debug.Log("Found int instead of String. Please fix.");
-            if(EditorUtility.DisplayDialog("Fail!",  "A number was detected. Please change it like the following: Replace '1' with 'one'",  "Ok"))
-                print("Pressed Yes.");
+            // if(EditorUtility.DisplayDialog("Fail!",  "A number was detected. Please change it like the following: Replace '1' with 'one'",  "Ok"))
+            //     print("Pressed Yes.");
         }
         else{
             if(Answerc == ""){
@@ -108,14 +108,14 @@ public class QuestionMenu : MonoBehaviour
                             
                         }
 
-                        if(EditorUtility.DisplayDialog("Success!",  "Your question has been added to the database. You will now be returned to the main menu.",  "Ok"))
-                        print("Pressed Yes.");
+                        // if(EditorUtility.DisplayDialog("Success!",  "Your question has been added to the database. You will now be returned to the main menu.",  "Ok"))
+                        // print("Pressed Yes.");
                         ReloadLevel();    
                 }
                 catch(SqliteException e){
                     Debug.Log("Syntax error found: " + e);
-                    if(EditorUtility.DisplayDialog("Fail!",  "There was an error adding your question. Ensure that there are no apostrophes or quotation marks.",  "Ok"))
-                        print("Pressed Yes.");
+                    // if(EditorUtility.DisplayDialog("Fail!",  "There was an error adding your question. Ensure that there are no apostrophes or quotation marks.",  "Ok"))
+                    //     print("Pressed Yes.");
                 }
             }
             else{
@@ -140,15 +140,15 @@ public class QuestionMenu : MonoBehaviour
                         
                     }
 
-                    if(EditorUtility.DisplayDialog("Success!",  "Your question has been added to the database. You will now be returned to the main menu.",  "Ok"))
-                    print("Pressed Yes.");
+                    // if(EditorUtility.DisplayDialog("Success!",  "Your question has been added to the database. You will now be returned to the main menu.",  "Ok"))
+                    // print("Pressed Yes.");
                     ReloadLevel();
                     
             }
             catch(SqliteException e){
                 Debug.Log("Syntax error found: " + e);
-                if(EditorUtility.DisplayDialog("Fail!",  "There was an error adding your question. Ensure that there are no apostrophes or quotation marks.",  "Ok"))
-                    print("Pressed Yes.");
+                // if(EditorUtility.DisplayDialog("Fail!",  "There was an error adding your question. Ensure that there are no apostrophes or quotation marks.",  "Ok"))
+                //     print("Pressed Yes.");
             }
             }
         }
