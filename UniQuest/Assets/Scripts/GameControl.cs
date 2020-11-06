@@ -319,7 +319,7 @@ public class GameControl : MonoBehaviour {
    
 
     
-    public static void AskQuestion()
+    public static void AskQuestion() //Rebuild
     {
         Debug.Log("AskQuestion");
         
@@ -377,7 +377,7 @@ public class GameControl : MonoBehaviour {
 
     }
 
-    public void AnswerQuestion(TextMeshProUGUI answerText)
+    public void AnswerQuestion(TextMeshProUGUI answerText) // Rebuild
     {
         
         if (answerText.text == Question_Correct)
