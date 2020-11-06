@@ -14,7 +14,7 @@ public class GameControl : MonoBehaviour {
     private static GameObject AText, BText, CText, expectedans, Player1, Player2, Player3, Player4, Player5, Player6, Player7, Player8, Player9, Player10, activePlayer, Mcamera, mainUI, diceUI, GameOverUI, QuestionUI, Wrong, Right, ans1, ans2, ans3, currentplayertext;
     private static ArrayList players, qns;
     private static Dictionary<GameObject, int> playerPositions;
-    public static int diceSideThrown = 0, NumberofPlayers, WhosTurn = 1;   
+    public static int diceSideThrown = 0, NumberofPlayers, WhosTurn = 1, qnslength;   
     
     public static TextMeshProUGUI QuestionText;
     //ans1Text,ans2Text, ans3Text
@@ -128,7 +128,7 @@ public class GameControl : MonoBehaviour {
             }
 
         }
-        Debug.Log(qns.Count);
+        qnslength = qns.Count;
 
 
 

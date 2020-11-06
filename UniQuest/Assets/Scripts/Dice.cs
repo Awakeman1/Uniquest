@@ -21,21 +21,22 @@ public class Dice : MonoBehaviour {
 
     public void Start()
     {
-        conn = "URI=file:" + Application.dataPath + "/dbQuestions.s3db";
-        dbconn = (IDbConnection) new SqliteConnection(conn);
-        dbconn.Open();
+        // conn = "URI=file:" + Application.dataPath + "/dbQuestions.s3db";
+        // dbconn = (IDbConnection) new SqliteConnection(conn);
+        // dbconn.Open();
         
-        string getnumqns = "SELECT COUNT(*) FROM questions;";
-        IDbCommand dbcmd = dbconn.CreateCommand();
-        dbcmd.CommandText = getnumqns;
-        IDataReader reader = dbcmd.ExecuteReader();
+        // string getnumqns = "SELECT COUNT(*) FROM questions;";
+        // IDbCommand dbcmd = dbconn.CreateCommand();
+        // dbcmd.CommandText = getnumqns;
+        // IDataReader reader = dbcmd.ExecuteReader();
 
-        while (reader.Read())
-        {
-            numberofquestions = reader.GetInt32(0);
-        }
+        // while (reader.Read())
+        // {
+        //     numberofquestions = reader.GetInt32(0);
+        // }
 
-        Debug.Log("number of qns from dcie: " + numberofquestions);
+        // Debug.Log("number of qns from dcie: " + numberofquestions);
+        numberofquestions = GameControl.qnslength;
         ds1 = Resources.Load<Sprite>("DiceSides/s1");
         ds2 = Resources.Load<Sprite>("DiceSides/s2");
         ds3 = Resources.Load<Sprite>("DiceSides/s3");
