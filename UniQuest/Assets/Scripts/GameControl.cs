@@ -11,15 +11,16 @@ using TMPro;
 
 public class GameControl : MonoBehaviour {
 
-    private static GameObject expectedans, Player1, Player2, Player3, Player4, Player5, Player6, Player7, Player8, Player9, Player10, activePlayer, Mcamera, mainUI, diceUI, GameOverUI, QuestionUI, Wrong, Right, ans1, ans2, ans3, currentplayertext;
-    private static ArrayList players;
+    private static GameObject AText, BText, CText, expectedans, Player1, Player2, Player3, Player4, Player5, Player6, Player7, Player8, Player9, Player10, activePlayer, Mcamera, mainUI, diceUI, GameOverUI, QuestionUI, Wrong, Right, ans1, ans2, ans3, currentplayertext;
+    private static ArrayList players, qns;
     private static Dictionary<GameObject, int> playerPositions;
     public static int diceSideThrown = 0, NumberofPlayers, WhosTurn = 1;   
     
-    public static TextMeshProUGUI QuestionText, ans1Text,ans2Text, ans3Text;
+    public static TextMeshProUGUI QuestionText;
+    //ans1Text,ans2Text, ans3Text
     public static bool QuestionCorrect = false, gamePaused = false; 
     public static String Question_Question, Question_Answer1, Question_Answer2, Question_Answer3, Question_Correct, Question_Type, conn ;
-    public static IDbConnection dbconn;
+    public static IDbConnection dbconn, dbconn2;
     public static ParticleSystem Rollagain1, Rollagain2, Rollagain3, Rollagain4, In1, In2, Out1, Out2;
     
     public void Awake(){
@@ -62,9 +63,12 @@ public class GameControl : MonoBehaviour {
         ans2 = GameObject.Find("OptionB");
         ans3 = GameObject.Find("OptionC");
 
-        ans1Text = GameObject.Find("OptionAText").GetComponent<TextMeshProUGUI>();
-        ans2Text = GameObject.Find("OptionBText").GetComponent<TextMeshProUGUI>();
-        ans3Text = GameObject.Find("OptionCText").GetComponent<TextMeshProUGUI>();
+        AText= GameObject.Find("AText");
+        BText= GameObject.Find("BText");
+        CText= GameObject.Find("CText");
+        // ans1Text = GameObject.Find("AText").GetComponent<UnityEngine.UI.Text>();
+        // ans2Text = GameObject.Find("BText").GetComponent<UnityEngine.UI.Text>();
+        // ans3Text = GameObject.Find("CText").GetComponent<UnityEngine.UI.Text>();
 
         GameOverUI.SetActive(false);
         QuestionUI.SetActive(false);
@@ -85,6 +89,49 @@ public class GameControl : MonoBehaviour {
         
         players = new ArrayList()
         {Player1, Player2, Player3, Player4, Player5, Player6, Player7, Player8, Player9, Player10};
+
+        qns = new ArrayList();
+        string prevqn = "";
+        string tempqn = "";
+        for(int b = 1; b < 250;){
+            string dbqn = "SELECT Qn_Question FROM questions WHERE ROWID = '" + b + "';";
+           
+
+            dbconn2 = (IDbConnection) new SqliteConnection(conn);
+            dbconn2.Open();
+            IDbCommand dbcmd2 = dbconn2.CreateCommand();
+            dbcmd2.CommandText = dbqn;
+                 IDataReader reader2 = dbcmd2.ExecuteReader();
+                    while (reader2.Read())
+                        {
+                            tempqn = reader2.GetString(0);
+                        }
+                    reader2.Close();
+                    reader2 = null;
+                    
+                dbcmd2.Dispose();
+                dbcmd2 = null;
+                dbconn2.Close();
+                dbconn2 = null;
+                {
+                    
+                }
+
+            if(tempqn != prevqn){
+            qns.Add(tempqn);
+            Debug.Log("qn added");
+            prevqn = tempqn;
+                b++;
+            }
+            else{
+                b++;
+            }
+
+        }
+        Debug.Log(qns.Count);
+
+
+
 
         NumberofPlayers = MainMenu.NumPlayers;
         for(int i = 10; i > NumberofPlayers; i--)
@@ -324,7 +371,7 @@ public class GameControl : MonoBehaviour {
         Debug.Log("AskQuestion");
         
 
-        string getqn = "SELECT * FROM questions WHERE ROWID = '" + Dice.QuestionID + "';";
+        string getqn = "SELECT * FROM questions WHERE Qn_Question = '"+ qns[Dice.QuestionID] +"';";
         IDbCommand dbcmd = dbconn.CreateCommand();
         dbcmd.CommandText = getqn;
         IDataReader reader = dbcmd.ExecuteReader();
@@ -350,9 +397,12 @@ public class GameControl : MonoBehaviour {
         {
             Debug.Log("mc");
             QuestionText.SetText(Question_Question);
-            ans1Text.SetText(Question_Answer1);
-            ans2Text.SetText(Question_Answer2);
-            ans3Text.SetText(Question_Answer3);
+            //ans1Text.SetText(Question_Answer1);
+            AText.GetComponent<UnityEngine.UI.Text>().text = Question_Answer1;
+            //ans2Text.SetText(Question_Answer2);
+            BText.GetComponent<UnityEngine.UI.Text>().text = Question_Answer2;
+            //ans3Text.SetText(Question_Answer3);
+            CText.GetComponent<UnityEngine.UI.Text>().text = Question_Answer3;
             ans3.SetActive(true);
             QuestionUI.SetActive(true);
         }
@@ -360,8 +410,10 @@ public class GameControl : MonoBehaviour {
         {
             Debug.Log("tf");
             QuestionText.SetText(Question_Question);
-            ans1Text.SetText(Question_Answer1);
-            ans2Text.SetText(Question_Answer2);
+            //ans1Text.SetText(Question_Answer1);
+            AText.GetComponent<UnityEngine.UI.Text>().text = Question_Answer1;
+            //ans2Text.SetText(Question_Answer2);
+            BText.GetComponent<UnityEngine.UI.Text>().text = Question_Answer2;
             ans3.SetActive(false);
             QuestionUI.SetActive(true);
         }
@@ -369,18 +421,20 @@ public class GameControl : MonoBehaviour {
         {
             Debug.Log("yn");
             QuestionText.SetText(Question_Question);
-            ans1Text.SetText(Question_Answer1);
-            ans2Text.SetText(Question_Answer2);
+            AText.GetComponent<UnityEngine.UI.Text>().text = Question_Answer1;
+            //ans1Text.SetText(Question_Answer1);
+            //ans2Text.SetText(Question_Answer2);
+            BText.GetComponent<UnityEngine.UI.Text>().text = Question_Answer2;
             ans3.SetActive(false);
             QuestionUI.SetActive(true);
         }
 
     }
 
-    public void AnswerQuestion(TextMeshProUGUI answerText) // Rebuild
+    public void AnswerQuestion(GameObject adda) // Rebuild
     {
         
-        if (answerText.text == Question_Correct)
+        if (adda.GetComponent<UnityEngine.UI.Text>().text == Question_Correct)
         {
             QuestionCorrect = true;
         }

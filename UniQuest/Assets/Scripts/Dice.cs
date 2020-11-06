@@ -75,7 +75,7 @@ public class Dice : MonoBehaviour {
                 GameControl.WhosTurn = 1;
             }
             Debug.Log(GameControl.WhosTurn);
-            QuestionID = Random.Range(1, numberofquestions);
+            QuestionID = Random.Range(1, numberofquestions); //Rebuild
             Debug.Log("QID: " + QuestionID);
             
             yield return new WaitForSeconds(1);
