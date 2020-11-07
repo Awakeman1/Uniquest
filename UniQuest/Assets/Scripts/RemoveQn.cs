@@ -10,13 +10,14 @@ public class RemoveQn : MonoBehaviour
 {
 
     public static IDbConnection dbconn;
-    public  GameObject content;
+    public  GameObject content, errsucc;
     public static string conn, questiontopurge="";
 
     void Start()
     {
         content = GameObject.Find("Content");
-        
+        errsucc = GameObject.Find("errsucc");
+        errsucc.gameObject.SetActive(false);
     }
 
     
@@ -54,20 +55,23 @@ public class RemoveQn : MonoBehaviour
                                 {
                                     
                                 }
-                        // if(EditorUtility.DisplayDialog("Success!",  "Your question has been removed. You will now return to the main menu.",  "Ok"))
-                        // print("Pressed Yes.");
+                        
                         ReloadLevel();
                         
                 
             }
             catch(SqliteException e){
                 Debug.Log("Syntax error found: " + e);
+                errsucc.GetComponent<UnityEngine.UI.Text>().text = "Err03 - There was an unknown error. Please see User Guide for more information.";
+                errsucc.gameObject.SetActive(true);
                 // if(EditorUtility.DisplayDialog("Fail!",  "There was an error removing your question.",  "Ok"))
                 //         print("Pressed Yes.");
             }
 
         }
         else{
+            errsucc.GetComponent<UnityEngine.UI.Text>().text = "Err04 - No item selected. Please see User Guide for more information.";
+            errsucc.gameObject.SetActive(true);
             // if(EditorUtility.DisplayDialog("Fail!",  "Please select an item to remove.",  "Ok"))
             //             print("Pressed Yes.");
         }
@@ -127,12 +131,14 @@ public class RemoveQn : MonoBehaviour
             }
             catch(SqliteException e){
                 Debug.Log("Syntax error found: " + e);
+                
                 // if(EditorUtility.DisplayDialog("Fail!",  "There was an error removing your question.",  "Ok"))
                 //         print("Pressed Yes.");
             }
 
         }
         else{
+          
             // if(EditorUtility.DisplayDialog("Fail!",  "Please select an item to remove.",  "Ok"))
             //             print("Pressed Yes.");
         }

@@ -149,9 +149,6 @@ public class MainMenu : MonoBehaviour
         menuRmQuestion.gameObject.SetActive(true);
 
 
-       
-
-        // RemoveQn.reindex();
         countqns();
     
         
