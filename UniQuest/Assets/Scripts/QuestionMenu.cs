@@ -82,6 +82,7 @@ public class QuestionMenu : MonoBehaviour
         
         if(int.TryParse(Question, out number) || int.TryParse(Answera, out number) || int.TryParse(Answerb, out number) || int.TryParse(Answerc, out number)){
             Debug.Log("Found int instead of String. Please fix.");
+            CallErr.Error1("Err01: Number found in Question or Answers. Please see User & Installation Manual for help.");
             // if(EditorUtility.DisplayDialog("Fail!",  "A number was detected. Please change it like the following: Replace '1' with 'one'",  "Ok"))
             //     print("Pressed Yes.");
         }
@@ -114,6 +115,7 @@ public class QuestionMenu : MonoBehaviour
                 }
                 catch(SqliteException e){
                     Debug.Log("Syntax error found: " + e);
+                    CallErr.Error2("Err02: Syntax Error. Please see User & Installation Manual for help.");
                     // if(EditorUtility.DisplayDialog("Fail!",  "There was an error adding your question. Ensure that there are no apostrophes or quotation marks.",  "Ok"))
                     //     print("Pressed Yes.");
                 }
@@ -147,6 +149,7 @@ public class QuestionMenu : MonoBehaviour
             }
             catch(SqliteException e){
                 Debug.Log("Syntax error found: " + e);
+                CallErr.Error2("Err02: Syntax Error. Please see User & Installation Manual for help.");
                 // if(EditorUtility.DisplayDialog("Fail!",  "There was an error adding your question. Ensure that there are no apostrophes or quotation marks.",  "Ok"))
                 //     print("Pressed Yes.");
             }

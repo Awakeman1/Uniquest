@@ -28,7 +28,10 @@ public class RemoveQn : MonoBehaviour
 
 
     public void purge(){
-        if(questiontopurge != ""){
+        if(questiontopurge == null){
+            CallErr.Error4("Err04: Please select an item to remove. Please see User & Installation Manual for help.");
+        }
+        else if(questiontopurge != ""){
             try{
 
                     conn = "URI=file:" + Application.dataPath + "/dbQuestions.s3db";
@@ -64,14 +67,16 @@ public class RemoveQn : MonoBehaviour
                 Debug.Log("Syntax error found: " + e);
                 errsucc.GetComponent<UnityEngine.UI.Text>().text = "Err03 - There was an unknown error. Please see User Guide for more information.";
                 errsucc.gameObject.SetActive(true);
+                CallErr.Error3("Err03: There was an issue removing the question. Please see User & Installation Manual for help.");
                 // if(EditorUtility.DisplayDialog("Fail!",  "There was an error removing your question.",  "Ok"))
                 //         print("Pressed Yes.");
             }
 
         }
         else{
-            errsucc.GetComponent<UnityEngine.UI.Text>().text = "Err04 - No item selected. Please see User Guide for more information.";
-            errsucc.gameObject.SetActive(true);
+            // errsucc.GetComponent<UnityEngine.UI.Text>().text = "Err04 - No item selected. Please see User Guide for more information.";
+            // errsucc.gameObject.SetActive(true);
+            CallErr.Error4("Err04: Please select an item to remove. Please see User & Installation Manual for help.");
             // if(EditorUtility.DisplayDialog("Fail!",  "Please select an item to remove.",  "Ok"))
             //             print("Pressed Yes.");
         }
@@ -131,14 +136,14 @@ public class RemoveQn : MonoBehaviour
             }
             catch(SqliteException e){
                 Debug.Log("Syntax error found: " + e);
-                
+                CallErr.Error3("Err03: There was an issue removing the question. Please see User & Installation Manual for help.");
                 // if(EditorUtility.DisplayDialog("Fail!",  "There was an error removing your question.",  "Ok"))
                 //         print("Pressed Yes.");
             }
 
         }
         else{
-          
+          CallErr.Error4("Err04: Please select an item to remove. Please see User & Installation Manual for help.");
             // if(EditorUtility.DisplayDialog("Fail!",  "Please select an item to remove.",  "Ok"))
             //             print("Pressed Yes.");
         }

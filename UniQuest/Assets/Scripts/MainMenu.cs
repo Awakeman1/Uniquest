@@ -22,6 +22,10 @@ public class MainMenu : MonoBehaviour
 
     public void Start()
     {
+        CallErr.Error1("");
+        CallErr.Error2("");
+        CallErr.Error3("");
+        CallErr.Error4("");
         Debug.Log("Start " + GetInstanceID(), this);
         rmquestionitem = GameObject.Find("qn");
         Content = GameObject.Find("Content");
@@ -93,6 +97,10 @@ public class MainMenu : MonoBehaviour
 
     public void Back()
     {
+        CallErr.Error1("");
+        CallErr.Error2("");
+        CallErr.Error3("");
+        CallErr.Error4("");
         Debug.Log("Back");
         ClearScreen();
         mmBackgroundImg.gameObject.SetActive(true);
