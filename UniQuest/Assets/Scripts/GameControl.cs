@@ -461,7 +461,7 @@ public class GameControl : MonoBehaviour {
     {
         expectedans.GetComponent<UnityEngine.UI.Text>().text = Question_Correct;
         Wrong.SetActive(true);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(5);
         Wrong.SetActive(false);
         NextTurn();
     }
