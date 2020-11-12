@@ -194,7 +194,7 @@ public class GameControl : MonoBehaviour {
             activePlayer = (GameObject)players[WhosTurn - 1];
             if (activePlayer.GetComponent<FollowThePath>().moveAllowed == true)
             {
-                if (activePlayer.GetComponent<FollowThePath>().waypointIndex > 3)
+                if (activePlayer.GetComponent<FollowThePath>().waypointIndex > 34)
                 {
                     activePlayer.GetComponent<FollowThePath>().moveAllowed = false;
                     String winner = activePlayer.name;
