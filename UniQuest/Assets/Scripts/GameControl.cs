@@ -11,7 +11,9 @@ using TMPro;
 
 public class GameControl : MonoBehaviour {
 
-    private static GameObject AText, BText, CText, expectedans, Player1, Player2, Player3, Player4, Player5, Player6, Player7, Player8, Player9, Player10, activePlayer, Mcamera, mainUI, diceUI, GameOverUI, QuestionUI, Wrong, Right, ans1, ans2, ans3, currentplayertext;
+    private static GameObject AText, BText, CText, expectedans, Player1, Player2, Player3, Player4, Player5, Player6, Player7, Player8, Player9, Player10;
+    private static GameObject activePlayer, Mcamera, mainUI, diceUI, GameOverUI, QuestionUI, Wrong, Right, ans1, ans2, ans3, currentplayertext;
+    private static GameObject WinBrown, WinDarkBlue, WinLightBlue, WinGreen, WinPink, WinHotPink, WinYellow, WinOrange, WinRed, WinPurple;
     private static ArrayList players, qns;
     private static Dictionary<GameObject, int> playerPositions;
     public static int diceSideThrown = 0, NumberofPlayers, WhosTurn = 1, qnslength;   
@@ -66,6 +68,28 @@ public class GameControl : MonoBehaviour {
         BText= GameObject.Find("BText");
         CText= GameObject.Find("CText");
 
+        WinBrown = GameObject.Find("WinBrown");
+        WinDarkBlue = GameObject.Find("WinDarkBlue");
+        WinLightBlue = GameObject.Find("WinLightBlue");
+        WinGreen = GameObject.Find("WinGreen");
+        WinPink = GameObject.Find("WinPink");
+        WinHotPink = GameObject.Find("WinHotPink");
+        WinYellow = GameObject.Find("WinYellow");
+        WinOrange = GameObject.Find("WinOrange");
+        WinRed = GameObject.Find("WinRed");
+        WinPurple = GameObject.Find("WinPurple");
+        
+        WinBrown.SetActive(false);
+        WinDarkBlue.SetActive(false);
+        WinLightBlue.SetActive(false);
+        WinGreen.SetActive(false);
+        WinPink.SetActive(false);
+        WinHotPink.SetActive(false);
+        WinYellow.SetActive(false);
+        WinOrange.SetActive(false);
+        WinRed.SetActive(false);
+        WinPurple.SetActive(false);
+
 
         GameOverUI.SetActive(false);
         QuestionUI.SetActive(false);
@@ -83,7 +107,9 @@ public class GameControl : MonoBehaviour {
         Player9 = GameObject.Find("Player9");
         Player10 = GameObject.Find("Player10");
         Debug.Log("Test: should have added all the elements if this is running");
-        
+
+       
+
         players = new ArrayList()
         {Player1, Player2, Player3, Player4, Player5, Player6, Player7, Player8, Player9, Player10};
 
@@ -168,7 +194,7 @@ public class GameControl : MonoBehaviour {
             activePlayer = (GameObject)players[WhosTurn - 1];
             if (activePlayer.GetComponent<FollowThePath>().moveAllowed == true)
             {
-                if (activePlayer.GetComponent<FollowThePath>().waypointIndex > 34)
+                if (activePlayer.GetComponent<FollowThePath>().waypointIndex > 3)
                 {
                     activePlayer.GetComponent<FollowThePath>().moveAllowed = false;
                     String winner = activePlayer.name;
@@ -180,33 +206,43 @@ public class GameControl : MonoBehaviour {
                     {
                         case "Player1":
                             GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Yellow";
+                            StartCoroutine(EndGameFlash(WinYellow));
                             break;
                         case "Player2":
                             GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Red";
+                            StartCoroutine(EndGameFlash(WinRed));
                             break;
                         case "Player3":
                             GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Purple";
+                            StartCoroutine(EndGameFlash(WinPurple));
                             break;
                         case "Player4":
                             GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Light Pink";
+                            StartCoroutine(EndGameFlash(WinPink));
                             break;
                         case "Player5":
                             GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Orange";
+                            StartCoroutine(EndGameFlash(WinOrange));
                             break;
                         case "Player6":
                             GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Hot Pink";
+                            StartCoroutine(EndGameFlash(WinHotPink));
                             break;
                         case "Player7":
                             GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Green";
+                            StartCoroutine(EndGameFlash(WinGreen));
                             break;
                         case "Player8":
                             GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Dark Blue";
+                            StartCoroutine(EndGameFlash(WinDarkBlue));
                             break;
                         case "Player9":
                             GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Brown";
+                            StartCoroutine(EndGameFlash(WinBrown));
                             break;
                         case "Player10":
                             GameOverUI.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Light Blue";
+                            StartCoroutine(EndGameFlash(WinLightBlue));
                             break;
                     }
                                         
@@ -464,5 +500,17 @@ public class GameControl : MonoBehaviour {
         yield return new WaitForSeconds(5);
         Wrong.SetActive(false);
         NextTurn();
+    }
+
+    IEnumerator EndGameFlash(GameObject WinColour)
+    {
+        while(true)
+        {
+        WinColour.SetActive(true);
+        Debug.Log("Endgameflash: SetActive");
+        yield return new WaitForSeconds(1);
+        WinColour.SetActive(false);
+        yield return new WaitForSeconds(1);
+        }
     }
 }
