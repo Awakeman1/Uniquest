@@ -23,13 +23,15 @@ public class GameControl : MonoBehaviour {
     public static String Question_Question, Question_Answer1, Question_Answer2, Question_Answer3, Question_Correct, Question_Type, conn ;
     public static IDbConnection dbconn, dbconn2;
     public static ParticleSystem Rollagain1, Rollagain2, Rollagain3, Rollagain4, In1, In2, Out1, Out2;
-    
+    public static GameObject MainmenuMusic;
+
     public void Awake(){
         Debug.Log("GameControl Awake");
     }
 
     public void Start()
     {
+          
         Debug.Log("GameControl Onstart()");
         Mcamera = GameObject.Find("MainCamera");
         conn = "URI=file:" + Application.dataPath + "/dbQuestions.s3db";
@@ -179,16 +181,24 @@ public class GameControl : MonoBehaviour {
                 Debug.Log(player + " has no audio listener");
             }
         }
-
+        
         Mcamera = GameObject.Find("MainCamera");
         Mcamera.SetActive(true);
-        Mcamera.GetComponent<AudioListener>().enabled = false;
+        // Mcamera.GetComponent<AudioListener>().enabled = false;
         Mcamera.transform.SetParent(Player1.gameObject.transform, false);
+        MainmenuMusic = GameObject.Find("MainMusic");
+        MainmenuMusic.GetComponent<AudioSource>().Play();
+       
         
     }
 
     void Update()
     {
+        
+
+
+
+
         if (!gamePaused)
         {
             activePlayer = (GameObject)players[WhosTurn - 1];
@@ -202,6 +212,7 @@ public class GameControl : MonoBehaviour {
                     Debug.Log("Game Over, " + winner + " Wins");
                     diceUI.SetActive(false);
                     GameOverUI.SetActive(true);
+                    MainmenuMusic.GetComponent<AudioSource>().Stop();
                     switch (winner)
                     {
                         case "Player1":
