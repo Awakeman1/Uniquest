@@ -23,7 +23,7 @@ public class GameControl : MonoBehaviour {
     public static String Question_Question, Question_Answer1, Question_Answer2, Question_Answer3, Question_Correct, Question_Type, conn ;
     public static IDbConnection dbconn, dbconn2;
     public static ParticleSystem Rollagain1, Rollagain2, Rollagain3, Rollagain4, In1, In2, Out1, Out2;
-    public static GameObject MainmenuMusic;
+    public static GameObject MainmenuMusic, WinSound;
 
     public void Awake(){
         Debug.Log("GameControl Awake");
@@ -194,10 +194,6 @@ public class GameControl : MonoBehaviour {
 
     void Update()
     {
-        
-
-
-
 
         if (!gamePaused)
         {
@@ -213,6 +209,8 @@ public class GameControl : MonoBehaviour {
                     diceUI.SetActive(false);
                     GameOverUI.SetActive(true);
                     MainmenuMusic.GetComponent<AudioSource>().Stop();
+                    WinSound = GameObject.Find("WinSound");
+                    WinSound.GetComponent<AudioSource>().Play();
                     switch (winner)
                     {
                         case "Player1":
